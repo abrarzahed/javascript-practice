@@ -83,3 +83,17 @@ p {
   backdrop-filter: blur(3px);
   z-index: 5;
 }
+.shake {
+  animation: shake 0.2s ease-out 1;
+}
+@keyframes shake {
+  0% {
+    margin-left: 10px;
+  }
+  50% {
+    margin-left: -10px;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}

@@ -61,5 +61,3 @@ Because as we know that javascript runtime is such a container which contains al
 A typical javascript runtime also includes a so called "callback queue". This is nothing but a data structure that contains all the callback functions which are ready to be executed, Which happens through something called event loop.
 
 */
-
-// ================ //

@@ -1,6 +1,8 @@
 'use strict';
 
 // Selection dom elements
+const playerName1 = document.getElementById('name--0');
+const playerName2 = document.getElementById('name--1');
 const scoreEl_1 = document.getElementById('score--0');
 const scoreEl_2 = document.getElementById('score--1');
 const diceEl = document.querySelector('.dice');
@@ -11,6 +13,14 @@ const currentEl_1 = document.getElementById('current--0');
 const currentEl_2 = document.getElementById('current--1');
 const playerEL_1 = document.querySelector('.player--0');
 const playerEL_2 = document.querySelector('.player--1');
+const notification = document.querySelector('.notification');
+const okBtn = document.getElementById('ok');
+const modal = document.querySelector('.modal');
+const player1Input = document.getElementById('texInput1');
+const player2Input = document.getElementById('texInput2');
+const modalContent = document.querySelector('.modal-content');
+
+let activeOk = false;
 
 let scores, currentScore, activePlayer, isPlaying;
 
@@ -30,6 +40,14 @@ const initGame = function () {
   document.querySelector(`.player--1`).classList.remove('player--winner');
   document.querySelector(`.player--0`).classList.add('player--active');
   document.querySelector(`.player--1`).classList.remove('player--active');
+
+  player1Input.value = '';
+  player2Input.value = '';
+
+  playerName1.textContent = `PLAYER 1`;
+  playerName2.textContent = `PLAYER 2`;
+
+  modal.classList.remove('hiddenModal');
 };
 
 initGame();
@@ -71,15 +89,29 @@ const holdDice = function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
     // if players score >= 100, finish game
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       isPlaying = false;
       diceEl.classList.add('hidden');
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
+
+      const winner = document
+        .querySelector('.player--winner')
+        .querySelector('.name').textContent;
+
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
+
+      const notificationElement = notification.querySelector('p');
+      notificationElement.textContent = `${winner} You Made It`;
+
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+        // notificationElement.textContent = ``;
+      }, 8000);
     } else {
       // switch to the next player
       switchPlayer();
@@ -90,3 +122,20 @@ const holdDice = function () {
 btnRoll.addEventListener('click', rollDice);
 btnHold.addEventListener('click', holdDice);
 btnNew.addEventListener('click', initGame);
+
+okBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  const form = document.getElementById('form');
+  if (form.checkValidity()) {
+    modal.classList.add('hiddenModal');
+    playerName1.textContent = player1Input.value.toLocaleUpperCase();
+    playerName2.textContent = player2Input.value.toLocaleUpperCase();
+  } else {
+    modalContent.classList.add('blink');
+    // this.classList.add('blink');
+    setTimeout(() => {
+      modalContent.classList.remove('blink');
+      // this.classList.remove('blink');
+    }, 400);
+  }
+});

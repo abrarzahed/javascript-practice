@@ -4,7 +4,7 @@ INFO: What is javaScript?
 ANSWER: Javascript is a high-level, prototyped-based, object-oriented 
 multi-paradigm,dynamic, single-threaded, garbage-collected 
 programing language with first-class-functions and a 
-non-blocking event loop concurrency model.😆
+non-blocking event loop concurrency model.🤨.
 
 POINT:  High-level:- Every programs that runs on computer needs some hardware resource
 such as memory, cpu to work. There are low level languageS such as C or C# where

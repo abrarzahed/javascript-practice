@@ -76,8 +76,8 @@ POINT: Every browser has its own javascript engine. But provably the most known 
 POINT: Any javascript engine always contains a cal-stack and a heap. The call-stack 
 is where all the code is executes using something called "execution context". 
 And the heap is an unstructured memory that stores all the objects that applications need.
- With that this is clear that where javascript code is executes. But now the question 
- is how the code will be compiled into machine code?
+With that this is clear that where javascript code is executes. But now the question 
+is how the code will be compiled into machine code?
 
 Well at first lets take a look at the deference between compilation and interpretation. 
 As we now that every single computer programs eventually needs to be converted as 
@@ -126,3 +126,40 @@ which are ready to be executed, Which happens through something called event loo
 */
 
 // ================ //
+
+/*
+INFO: What is execution context?
+
+ANSWER: After compilation of javascript code, there will be a a global execution
+context for top level code. Top level code means the code which is not inside a function.
+The defecation of execution context can be like, an environment in which stored all the necessary information for code to be executed with a specific order and role.
+
+For each and every function, an new execution context will be created. 
+Same goes for methods because there simply functions attached to objects.
+
+After execution of all functions the engine waits for callback functions to arrive. 
+For example a callback function associated with a click event.
+
+Now lets explore what inside of an execution context. The first thing inside 
+any execution context is so called variable environment. In this environment 
+all the variables and function declaration are stored. And there is also a spacial
+arguments object. This object contains all the arguments passed into function that 
+the current execution context belongs to. Because each function gets its own execution
+context as soon as the function is called. So all the variable declared inside a function
+will end up in its variable environment.
+
+However a function can also access a variable outside of the function. This work 
+because something called scope chain.
+
+Basically scope chain is consists of references to variables that are located outside
+of the current function. to keep track of the scope chain it is stored in each 
+execution context. Each context also get a spacial variable called this keyword.
+
+The content of the execution context variable environment, scope chain and this keyword 
+are generated in the sp called creation face. Which happens right before execution.
+
+But execution context belonging to arrow functions, do not get there argument object and 
+the this keyword. Basically arrow functions do not have argument object and this keyword.
+Instead they can use the argument and this keyword from their closest regular function.
+
+*/

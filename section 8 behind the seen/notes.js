@@ -162,7 +162,7 @@ But execution context belonging to arrow functions, do not get there argument ob
 the this keyword. Basically arrow functions do not have argument object and this keyword.
 Instead they can use the argument and this keyword from their closest regular function.
 
-POINT: Scope chain:-  Scoping controls how variables are organized and accessed. 
+POINT: Scope chain and Scope:-  Scoping controls how variables are organized and accessed. 
 Where do variables live? or Where they can be accessed by javascript engine, and where not?
 
 In javascript there is something called lexical scoping. Lexical scoping means, the way variables
@@ -172,7 +172,7 @@ to the variables of the parent function. Scope chaining only works upwards by so
 
 Variables scoping is influenced by where exactly we write our functions and blocks.
 
-POINT: Scope: Scope is eventually a space or environment in which a variable is declared.
+Scope is eventually a space or environment in which a variable is declared.
 And in the case of functions, it is an environment which is stored in the functions execution context. In javascript there are global scope, function scope and block scope.
 Well, Then what is scope of variable? Simply scope of variable is a region of our code 
 where a certain variable can be accessed.
@@ -194,7 +194,16 @@ Only variables declared with let and const are restricted to the block in which 
 Other hand variable declared with var still accessible from outside of that block. But restricted
 inside function. Var is function scoped and let, const are block scoped
 
-But with es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block.
+But with es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block. 
  
+POINT: Variable Environment:- This is a terms which says how variables are actually created in javascript. In javascript there is a mechanism called hoisting. 
+Hoisting makes some types of variables accessible or usable in the code before they are declared.
+Which sounds like 
+
+Some people define hoisting as "variables magically lifted to the top of their scope" and to be honest that is actually hoisting looks like. But... behind the seen that actually not what happens. In fact behind the seen the code is scanned for variable declarations, and for each variable a new property is created in the "variable environment object". And this happens during so called "creation face" of execution context. That is how hoisting works.
+
+Although hoisting does not works the same for all variable types. So lets analyze the way hoisting works for function declaration, variable declared with var, variable declared with let and const, function expression and arrow function.
+
+# Function declaration is actually hoisted. And the initial value is function itself.
 
 */

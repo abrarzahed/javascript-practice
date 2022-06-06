@@ -162,4 +162,39 @@ But execution context belonging to arrow functions, do not get there argument ob
 the this keyword. Basically arrow functions do not have argument object and this keyword.
 Instead they can use the argument and this keyword from their closest regular function.
 
+POINT: Scope chain:-  Scoping controls how variables are organized and accessed. 
+Where do variables live? or Where they can be accessed by javascript engine, and where not?
+
+In javascript there is something called lexical scoping. Lexical scoping means, the way variables
+are organized and accessed is entirely controlled by the placement of functions and of blocks
+in the programs code. For example a function which is written inside another function, has access
+to the variables of the parent function. Scope chaining only works upwards not downwards nor sideways.
+
+Variables scoping is influenced by where exactly we write our functions and blocks.
+
+POINT: Scope: Scope is eventually a space or environment in which a variable is declared.
+And in the case of functions, it is an environment which is stored in the functions execution context. In javascript there are global scope, function scope and block scope.
+Well, Then what is scope of variable? Simply scope of variable is a region of our code 
+where a certain variable can be accessed.
+
+1 Global Scope: Global scope is for all the top level code. Code that outside of functions and 
+blocks are located in global scope. And they can be accessed from anywhere of the program. Even inside of any function and any block
+
+2 Function Scope: Each and every function creates a scope. Variable that declared inside that
+function scope is only accessible inside that function. This is also called local scope.
+Function declaration, function expression and arrow function the all create their own scope. 
+
+3 Block Scope: Traditionally only functions  used to create scopes in javascript. But with es6 
+blocks also create scopes now. Block means everything between starting and ending curly braces.
+Such as an if statement or a for loop. As like function scope, variable which is declared inside 
+the block is only accessible inside that block.
+
+But the deference is, block scope only applies to variable declared with let and const.
+Only variables declared with let and const are restricted to the block in which they are created.
+Other hand variable declared with var still accessible from outside of that block. But restricted
+inside function. Var is function scoped and let, const are block scoped
+
+But with es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block.
+ 
+
 */

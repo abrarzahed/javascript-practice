@@ -168,7 +168,7 @@ Where do variables live? or Where they can be accessed by javascript engine, and
 In javascript there is something called lexical scoping. Lexical scoping means, the way variables
 are organized and accessed is entirely controlled by the placement of functions and of blocks
 in the programs code. For example a function which is written inside another function, has access
-to the variables of the parent function. Scope chaining only works upwards not downwards nor sideways.
+to the variables of the parent function. Scope chaining only works upwards by something called variable lookup not downwards nor sideways.
 
 Variables scoping is influenced by where exactly we write our functions and blocks.
 

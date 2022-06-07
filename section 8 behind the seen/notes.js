@@ -202,8 +202,17 @@ Which sounds like
 
 Some people define hoisting as "variables magically lifted to the top of their scope" and to be honest that is actually hoisting looks like. But... behind the seen that actually not what happens. In fact behind the seen the code is scanned for variable declarations, and for each variable a new property is created in the "variable environment object". And this happens during so called "creation face" of execution context. That is how hoisting works.
 
-Although hoisting does not works the same for all variable types. So lets analyze the way hoisting works for function declaration, variable declared with var, variable declared with let and const, function expression and arrow function.
+Although hoisting does not works  same for all variable types. So lets analyze the way hoisting works for function declaration, variable defined with var, variable defined with let and const, function expression and arrow function.
 
-# Function declaration is actually hoisted. And the initial value is function itself.
+# Function declaration is actually hoisted. And the initial value is function itself. That means we can use function declaration before they are declared.
+
+# Variables defined with "var" are also hoisted. But in this case hoisting works in a deferent way. When we try to access a var variable before its declaration we dont get the declared value nor an error, instead we get "undefined". This is wired behavior to lots of people. In fact it might be a common source of bug. But as a beginner or a learner i dont have that much headache about this. Because there are alternatives to get rid of this unexpected occurrence.
+
+# Let and const are'nt hoisted. Though technically they are but their initial value is "uninitialized" . In other word it is called that they are stored in "Temporal Dead Zone"(TDZ)
+All that means , they can be accessed between the beginning of the scope and the place where they are declared. Let and const are block scoped. So they only exist in the block in which they were created. Therefore they are successful alternatives of var at least to avoid that unexpected occurrence that i mentioned before.
+
+# Now lets talk about function expression and arrow function. How does hoisting works for them?
+Well it is actually depends on if they were created using var or const or let. Because we have learned already that functions are simply variables in javascript. It means that function expression and arrow function declared with var is hoisted. It is usable before declaration but the value is undefined. On the other hand function expression and arrow function defined with let and const are not hoisted practically(though technically they are). They can not be accessed
+before declaration.
 
 */

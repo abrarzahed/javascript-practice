@@ -132,9 +132,9 @@ INFO: What is execution context?
 
 ANSWER: After compilation of javascript code, there will be a a global execution
 context for top level code. Top level code means the code which is not inside a function.
-The defecation of execution context can be like, an environment in which stored all the necessary information for code to be executed with a specific order and role.
+The definition of execution context can be like, an environment in which stored all the necessary information for code to be executed with a specific order and role.
 
-For each and every function, an new execution context will be created. 
+For each and every function, a new execution context will be created. 
 Same goes for methods because there simply functions attached to objects.
 
 After execution of all functions the engine waits for callback functions to arrive. 
@@ -146,17 +146,17 @@ all the variables and function declaration are stored. And there is also a spaci
 arguments object. This object contains all the arguments passed into function that 
 the current execution context belongs to. Because each function gets its own execution
 context as soon as the function is called. So all the variable declared inside a function
-will end up in its variable environment.
+will end up in its own variable environment.
 
 However a function can also access a variable outside of the function. This work 
 because something called scope chain.
 
 Basically scope chain is consists of references to variables that are located outside
 of the current function. to keep track of the scope chain it is stored in each 
-execution context. Each context also get a spacial variable called this keyword.
+execution context. Each context also gets a spacial variable called this keyword.
 
-The content of the execution context variable environment, scope chain and this keyword 
-are generated in the sp called creation face. Which happens right before execution.
+INFO: The content of the execution context  variable environment, scope chain and this keyword 
+are generated in the so called creation face. Which happens right before execution.
 
 But execution context belonging to arrow functions, do not get there argument object and 
 the this keyword. Basically arrow functions do not have argument object and this keyword.
@@ -178,7 +178,7 @@ Well, Then what is scope of variable? Simply scope of variable is a region of ou
 where a certain variable can be accessed.
 
 1 Global Scope: Global scope is for all the top level code. Code that outside of functions and 
-blocks are located in global scope. And they can be accessed from anywhere of the program. Even inside of any function and any block
+blocks are located in global scope. And they can be accessed from anywhere of the program. Even inside of any function and any block.
 
 2 Function Scope: Each and every function creates a scope. Variable that declared inside that
 function scope is only accessible inside that function. This is also called local scope.
@@ -196,9 +196,9 @@ inside function. Var is function scoped and let, const are block scoped
 
 But with es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block. 
  
-POINT: Variable Environment:- This is a terms which says how variables are actually created in javascript. In javascript there is a mechanism called hoisting. 
+POINT: Variable Environment & Hoisting:- This is a term which says how variables are actually created in javascript. In javascript there is a mechanism called hoisting. 
 Hoisting makes some types of variables accessible or usable in the code before they are declared.
-Which sounds like 
+
 
 Some people define hoisting as "variables magically lifted to the top of their scope" and to be honest that is actually hoisting looks like. But... behind the seen that actually not what happens. In fact behind the seen the code is scanned for variable declarations, and for each variable a new property is created in the "variable environment object". And this happens during so called "creation face" of execution context. That is how hoisting works.
 
@@ -214,5 +214,30 @@ All that means , they can be accessed between the beginning of the scope and the
 # Now lets talk about function expression and arrow function. How does hoisting works for them?
 Well it is actually depends on if they were created using var or const or let. Because we have learned already that functions are simply variables in javascript. It means that function expression and arrow function declared with var is hoisted. It is usable before declaration but the value is undefined. On the other hand function expression and arrow function defined with let and const are not hoisted practically(though technically they are). They can not be accessed
 before declaration.
+
+POINT: The "this" keyword:- "this" keyword" or "this" variable is created for every execution context(every function). In fact as we learned before this is one of the three components of any execution context along with variable environment and scope chain. Generally the "this" keyword will always take the value of the owner of the function in which "this" keyword is used. This definition is still abstract. 
+
+But the important thing is that, the value of "this" keyword is not static at all. It depends on how the function is called. And its value is only assigned when the function is actually called.
+
+Now lets analyze four deferent ways in which functions can be called(excluded new, call, apply, bind). 
+
+# In this sequence, the first way to call a function is, as a method. Means a function is attached to an object. So when a method is called, the "this" keyword inside that method is simply point to the object in which the function is associated. In other word it is point the object which is calling the method.
+
+# Another way of calling a function is simply call it as a normal function, not as a method which is attached to any object. In this case the "this" keyword will simple be undefined if strict mode is on. Otherwise(without strict mode) the "this" keyword will point to global object in this case(browser) it is window object.
+
+# Next we have arrow functions. Actually arrow functions are not a way of calling functions. It is an important type of function that we have to consider. Arrow functions does not have their own "this" variable/keyword. Instead here the "this" will simply be the "this" of its parent function. Technically this is called the lexical "this" keyword.
+
+# Finally if the function is called as an event listener then the "this" keyword will be the dom element in which the event handler is attached to.
+
+Well up until now we have seen, what is "this". But.. it is more important to know what isn't "this"😀
+
+⛔ "this" will never point to the function in which it is used.
+⛔ "this" will never point to the variable environment of the function in which it is used.
+
+These two are the most common wrong area of "this"😀
+ 
+
+
+
 
 */

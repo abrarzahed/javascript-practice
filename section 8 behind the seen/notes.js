@@ -142,7 +142,7 @@ For example a callback function associated with a click event.
 
 Now lets explore what inside of an execution context. The first thing inside 
 any execution context is so called variable environment. In this environment 
-all the variables and function declaration are stored. And there is also a spacial
+all the variables and function declarations are stored. And there is also a spacial
 arguments object. This object contains all the arguments passed into function that 
 the current execution context belongs to. Because each function gets its own execution
 context as soon as the function is called. So all the variable declared inside a function
@@ -192,11 +192,11 @@ the block is only accessible inside that block.
 But the deference is, block scope only applies to variable declared with let and const.
 Only variables declared with let and const are restricted to the block in which they are created.
 Other hand variable declared with var still accessible from outside of that block. But restricted
-inside function. Var is function scoped and let, const are block scoped
+inside function. Var is function scoped and let, const are block scoped.
 
-But with es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block. 
+In es6 all functions are now also block scoped, at least in 'strict mode'. That means just like let and const function which is declared inside a block is only accessible inside this block. 
  
-POINT: Variable Environment & Hoisting:- This is a term which says how variables are actually created in javascript. In javascript there is a mechanism called hoisting. 
+POINT: Variable Environment & Hoisting:- This term says how variables are actually created in javascript. In javascript there is a mechanism called hoisting. 
 Hoisting makes some types of variables accessible or usable in the code before they are declared.
 
 

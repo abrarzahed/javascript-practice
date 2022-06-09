@@ -95,6 +95,7 @@ abrar.calcAge();
 abrar.great();
 */
 
+/*
 // INFO: The arguments object in regular function.
 const sumNum = function (a, b) {
   const test = [];
@@ -118,3 +119,59 @@ const sumNumArrow = (a, b) => {
   return test;
 };
 console.log(sumNumArrow(2, 3, 4, 5, 6));
+*/
+
+/*
+// INFO: Difference between objects and primitive
+let age = 30;
+let oldAge = age;
+age = 31; //But the variable old age won't be changed.
+
+// console.log(age);
+// console.log(oldAge);
+
+const one = {
+  name: 'Abrar',
+  age: 40,
+};
+const two = one;
+two.age = 50; //Also age of one is assigned to 50 !
+
+// console.log('one:', one);
+// console.log('two:', two);
+
+const person = {
+  name: 'Mr. Jon',
+  age: 33,
+  friends: ['david', 'zara'],
+};
+
+// SOLUTION: function Object.assign in order to create a copy of an object. BUG: but a shallow copy, Means it won't copy an object or array inside of an object.
+const copyPerson = Object.assign({}, person);
+
+copyPerson.job = 'Teacher';
+copyPerson.age = 100;
+copyPerson.friends.push('Yash'); //also added Yash into person object friends array
+
+console.log(person);
+console.log(copyPerson);
+*/
+
+/*
+//INFO: testing fake store api
+const container = document.querySelector('.container');
+fetch('https://fakestoreapi.com/products')
+  .then(res => res.json())
+  .then(json => {
+    for (let i in json) {
+      const item = document.createElement('div');
+      const heading1 = document.createElement('h3');
+      const img = document.createElement('img');
+      img.src = json[i].image;
+      heading1.textContent = ` ${i} ${json[i].title}`;
+      item.appendChild(heading1);
+      item.appendChild(img);
+      container.appendChild(item);
+    }
+  });
+*/

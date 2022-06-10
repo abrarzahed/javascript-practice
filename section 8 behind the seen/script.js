@@ -175,3 +175,12 @@ fetch('https://fakestoreapi.com/products')
     }
   });
 */
+
+/*
+
+const arrayOne = [1, 2, 3];
+const arrayTwo = [...arrayOne];
+arrayTwo[2] = 100;
+console.log('Array one:', arrayOne);
+console.log('Array two:', arrayTwo);
+*/

@@ -35,9 +35,116 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  // ! coding CHALLENGE:
+  orderPizza(firstIng, ...otherIng) {
+    let str = `Here is your delicious pizza with ${firstIng}, `;
+
+    if (otherIng.length > 1) {
+      for (let i of otherIng) {
+        if (otherIng.indexOf(i) === otherIng.length - 1) {
+          str += i + '.';
+          console.log(i);
+        } else if (otherIng.indexOf(i) === otherIng.length - 2) {
+          str += i + ' and ';
+        } else {
+          str += i + ', ';
+        }
+      }
+    } else {
+      str = `Here is your delicious pizza with ${firstIng}`;
+      if (otherIng) {
+        for (let i of otherIng) {
+          str += ' and ' + i;
+        }
+      }
+    }
+
+    console.log(str);
+  },
 };
 
-// INFO: spread operators
+console.log('========== || ============');
+
+// short circuiting: logical and(&&) and logical or(||) can use any data types, the can return any data types and they csn be used for short circuiting.
+/*
+console.log([] || 'Abrar');
+console.log('' || 'Abrar');
+console.log(undefined || 'Abrar');
+console.log(null || 'Abrar');
+console.log(0 || 'Abrar');
+console.log({} || 'Abrar');
+console.log(undefined || null);
+console.log(true || 'Abrar');
+console.log(false || 'Abrar');
+*/
+
+// Real example
+restaurant.numGuests = 20;
+const guests = restaurant.numGuests || 100;
+
+console.log(guests);
+
+console.log('========== && ============');
+
+console.log([] && 'Abrar');
+console.log(true && 'Abrar');
+console.log(undefined && 'Abrar');
+console.log(null && 'Abrar');
+console.log(0 && 'Abrar');
+console.log({} && 'Abrar');
+console.log(undefined && null);
+console.log(true && 'Abrar');
+console.log(false && 'Abrar');
+
+// Real example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// real example using short circuiting
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+/*
+// The rest parameters. Rest because on left of =
+const [a, b, ...all] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// console.log(all);
+
+// use case of rest and spread together.
+
+//INFO: the rest pattern always should be the last element of assignment.
+
+// ARRAY
+const [pizza, , risotto, ...others] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+// console.log(pizza, risotto, others);
+
+// OBJECT
+const { sat: weekend, ...weekDays } = restaurant.openingHours;
+// console.log(weekend);
+// console.log(weekDays);
+
+// Functions
+const add = function (...nums) {
+  let sum = 0;
+  for (let i of nums) {
+    sum += i;
+  }
+  console.log(sum);
+};
+const x = [21, 34, 4, 6];
+// add(1, 2);
+// add(1, 2, 3);
+// add(1, 2, 3, 4);
+// add(1, 2, 3, 4, 5);
+// add(...x);
+restaurant.orderPizza('Mushroom', 'Spinach', 'Onion', 'Garlic');
+*/
+
+/*////////////////////////////////////////////////////////////
+INFO: spread operators Spread because on right side of =
 const arr = [4, 5, 6];
 const newArr = [1, 2, 3, ...arr];
 console.log(arr, newArr);
@@ -46,7 +153,6 @@ const newMenu = [...restaurant.mainMenu, 'Gnocci'];
 console.log(newMenu);
 
 // INFO: two important use case of spread operators
-
 // 1 shallow copy of an array
 const mainMenuCopy = [...restaurant.mainMenu];
 console.log(mainMenuCopy);
@@ -68,7 +174,7 @@ const ingredients = [
   prompt(`Ingredient 3`),
 ];
 restaurant.orderPasta(...ingredients);
-*/
+
 
 // OBJECTS
 // marg an object to another object
@@ -78,6 +184,7 @@ const newRestaurant = { foundedIn: 1999, ...restaurant, founder: 'Abrar' };
 // Shallow copy of an object
 const restaurantCopy = { ...restaurant };
 console.log(restaurantCopy);
+*/
 
 /*
 passing object as a argument

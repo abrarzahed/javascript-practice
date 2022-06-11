@@ -6,11 +6,6 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-
   openingHours: {
     thu: {
       open: 12,
@@ -25,10 +20,24 @@ const restaurant = {
       close: 24,
     },
   },
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  orderDelivery({ starterIndex = 10, mainIndex = 20, time, address }) {
+    console.log(
+      `Order received \n Time: ${time}. \n Address: ${address}. \n Main index: ${mainIndex}. \n Starter index: ${starterIndex}.`
+    );
+  },
 };
 
-// Array destructuring.
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
+// Array destructuring.
 /*
 // Normal way
 const arr = [1, 2, 3];
@@ -91,7 +100,8 @@ const { menu = ['egg', 'meat'], starterMenu: starters = ['rice', 'milk'] } =
 // console.log(menu, starters);
 */
 
-// Mutating variables
+/*
+//INFO: Mutating variables
 let a = 111;
 let b = 222;
 const obj = { a: 23, b: 7, c: 14 };
@@ -105,3 +115,4 @@ const {
   fri: { open, close },
 } = openingHours;
 console.log(openingHours, open, close);
+*/

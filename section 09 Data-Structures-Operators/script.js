@@ -1,4 +1,20 @@
 'use strict';
+const weekdays = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
+const openingHours = {
+  // computed object keys as well 😲 by square braces
+  [weekdays[5]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[6]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[0]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 
 const restaurant = {
   name: 'Classico Italiano',
@@ -6,20 +22,11 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+
+  // ES6 Enhanced objects literals
+  openingHours,
+
+  // ES6 way of writing a function(method) body inside an object.
   order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
@@ -38,36 +45,68 @@ const restaurant = {
 
   // ! coding CHALLENGE:
   orderPizza(firstIng, ...otherIng) {
-    let str = `Here is your delicious pizza with ${firstIng}, `;
+    let output = `Here is your delicious pizza with ${firstIng}, `;
 
     if (otherIng.length > 1) {
       for (let i of otherIng) {
         if (otherIng.indexOf(i) === otherIng.length - 1) {
-          str += i + '.';
+          output += i + '.';
           console.log(i);
         } else if (otherIng.indexOf(i) === otherIng.length - 2) {
-          str += i + ' and ';
+          output += i + ' and ';
         } else {
-          str += i + ', ';
+          output += i + ', ';
         }
       }
     } else {
-      str = `Here is your delicious pizza with ${firstIng}`;
+      output = `Here is your delicious pizza with ${firstIng}`;
       if (otherIng) {
         for (let i of otherIng) {
-          str += ' and ' + i;
+          output += ' and ' + i;
         }
       }
     }
 
-    console.log(str);
+    return console.log(output);
   },
 };
 
-// restaurant.orderPizza('mushrooms', 'spinach', 'test');
+// Optional chaining(?)
+/*
+console.log(restaurant?.openingHours.mon?.open);
+console.log(restaurant?.openingHours.fri?.open);
+Example
+const days = ['sat', 'sun', 'mon', 'tue', 'wed', 'thu', 'fri'];
+for (let day of days) {
+  let open = restaurant.openingHours[day]?.open ?? 'Closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+*/
+
+/*
+Optional chaining(?) in methods
+console.log(restaurant.order?.(1, 0) ?? `Method doesn't exist`);
+console.log(restaurant.orderJuice?.(1, 0) ?? `Method does not exist`);
+*/
+
+// Optional chaining(?) Array
+const users = [{ name: 'Abrar', email: 'abrar@dot.com' }];
+console.log(users[0]?.name ?? 'User does not exist');
+
+/*
+// for of loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (let item of menu) {
+  console.log(item);
+}
+
+// with array.entries to have the index number of the item
+for (let [index, item] of menu.entries()) {
+  console.log(`${index + 1}: ${item}`);
+}
+*/
 
 // Coding Challenge #1
-
 /* 
 We're building a football betting app (soccer for my American friends 😅)!
 

@@ -64,7 +64,7 @@ const restaurant = {
   },
 };
 
-restaurant.orderPizza('mushrooms', 'spinach', 'test');
+// restaurant.orderPizza('mushrooms', 'spinach', 'test');
 
 // Coding Challenge #1
 
@@ -121,12 +121,64 @@ const game = {
   scored: ['Lewandowski', 'Gnarby', 'Podolwski', 'Hummels'],
   date: 'Nov 9th, 2037',
   odds: {
-    team1: 11.33,
+    team1: 1,
     x: 3.25,
     team2: 11.33,
   },
 };
 
+/*
+// condition 1
+const [player1, player2] = game.players;
+console.log(player1, player2);
+
+// condition 2
+const [team1Gk, ...team1FieldPlayers] = player1;
+console.log(team1Gk, team1FieldPlayers);
+
+const [team2Gk, ...team2FieldPlayers] = player2;
+console.log(team2Gk, team2FieldPlayers);
+
+// condition 3
+const allPlayers = [...player1, ...player2];
+console.log(allPlayers);
+
+// condition 4
+const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+
+// condition 5
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+
+console.log(team1, draw, team2);
+
+// condition 6
+const printGoals = function (...numbers) {
+  let output = `${numbers.length} goals were scored by respectively `;
+  for (let i of numbers) {
+    if (numbers.indexOf(i) === numbers.length - 1) {
+      output += i + '.';
+    } else if (numbers.indexOf(i) === numbers.length - 2) {
+      output += i + ' and ';
+    } else {
+      output += i + ', ';
+    }
+  }
+  return console.log(output);
+};
+
+printGoals(...game.scored);
+
+// condition 7
+team1 < team2 && console.log('Team 1 is more likely to win');
+team2 < team1 && console.log('Team 2 is more likely to win');
+team2 === team1 && console.log('The match is draw');
+
+*/
+
+/*=============================
 // 1
 const [player1, player2] = game.players;
 console.log(player1, player2);
@@ -175,6 +227,8 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win');
 team2 === team1 && console.log('The match is draw');
+
+*/
 
 // ================================================================ //
 

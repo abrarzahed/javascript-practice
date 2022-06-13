@@ -70,8 +70,45 @@ const restaurant = {
     return console.log(output);
   },
 };
-//PROBLEM: Coding Challenge #2
 
+// SECTION: SET
+const orderSet = new Set(['Pizza', 'Pasta', 'Risotto', 'Pizza', 'Pasta']);
+console.log(orderSet);
+
+//to get how many item in the set
+console.log(orderSet.size);
+
+// to check if an item exist or not. it returns true or false.
+console.log(orderSet.has('Pizza'));
+console.log(orderSet.has('mushrooms'));
+
+// add item to set
+orderSet.add('Garlic Bread');
+
+// delete item from set
+orderSet.delete('Risotto');
+
+// loop through set
+for (let order of orderSet) console.log(order);
+
+// remove all item from set at once
+// orderSet.clear();
+
+// set example
+const staff = ['Chef', 'Waiter', 'Manager', 'Chef', 'Manager', 'Waiter'];
+// converting set to array in order to get access to every element of it
+const staffUnique = [...new Set(staff)];
+console.log(staff, staffUnique);
+
+// set with string
+console.log('==== set with string ====');
+console.log(new Set('Abrar'));
+
+console.log('==== entire set ====');
+console.log(orderSet);
+
+// =================================================
+//PROBLEM: Coding Challenge #2
 /* 
 Let's continue with our football betting app!
 
@@ -133,6 +170,40 @@ const game = {
     team2: 6.5,
   },
 };
+
+/*
+// SOLUTION:
+// 1
+console.log('========== condition 1 ===========');
+for (let [i, item] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${item}`);
+}
+
+// 2
+console.log('========== condition 2 ===========');
+const oddsValues = Object.values(game.odds);
+let average = 0;
+for (let i of oddsValues) {
+  average += i / oddsValues.length;
+}
+console.log(average);
+
+// 3
+console.log('========== condition 3 ===========');
+for (let [key, value] of Object.entries(game.odds)) {
+  let teamName = key === 'x' ? 'draw' : game[key];
+  let str = `Odds of ${teamName}: ${value}`;
+  console.log(str);
+}
+
+// 4
+console.log('========== condition 4 ===========');
+const scorers = {};
+for (let player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
+*/
 
 /*
 // SOLUTION: Coding Challenge #2

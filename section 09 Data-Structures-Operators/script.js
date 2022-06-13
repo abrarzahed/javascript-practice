@@ -71,6 +71,31 @@ const restaurant = {
   },
 };
 
+// SECTION: Looping through object
+// properties
+const properties = Object.keys(openingHours);
+// console.log(properties);
+
+console.log(`We are open on ${properties.length} days : `);
+for (let day of properties) {
+  // console.log(day);
+}
+
+// Values
+const values = Object.values(openingHours);
+// console.log(values);
+
+for (let i of values) {
+  // console.log(i);
+}
+
+// Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+for (let [day, { open, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
 // Optional chaining(?)
 /*
 console.log(restaurant?.openingHours.mon?.open);
@@ -89,18 +114,20 @@ console.log(restaurant.order?.(1, 0) ?? `Method doesn't exist`);
 console.log(restaurant.orderJuice?.(1, 0) ?? `Method does not exist`);
 */
 
-// Optional chaining(?) Array
+/*
+Optional chaining(?) Array
 const users = [{ name: 'Abrar', email: 'abrar@dot.com' }];
 console.log(users[0]?.name ?? 'User does not exist');
+*/
 
 /*
-// for of loop
+for of loop
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 for (let item of menu) {
   console.log(item);
 }
 
-// with array.entries to have the index number of the item
+with array.entries to have the index number of the item
 for (let [index, item] of menu.entries()) {
   console.log(`${index + 1}: ${item}`);
 }
@@ -167,33 +194,33 @@ const game = {
 };
 
 /*
-// condition 1
+condition 1
 const [player1, player2] = game.players;
 console.log(player1, player2);
 
-// condition 2
+condition 2
 const [team1Gk, ...team1FieldPlayers] = player1;
 console.log(team1Gk, team1FieldPlayers);
 
 const [team2Gk, ...team2FieldPlayers] = player2;
 console.log(team2Gk, team2FieldPlayers);
 
-// condition 3
+condition 3
 const allPlayers = [...player1, ...player2];
 console.log(allPlayers);
 
-// condition 4
+condition 4
 const players1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
-// condition 5
+condition 5
 const {
   odds: { team1, x: draw, team2 },
 } = game;
 
 console.log(team1, draw, team2);
 
-// condition 6
+condition 6
 const printGoals = function (...numbers) {
   let output = `${numbers.length} goals were scored by respectively `;
   for (let i of numbers) {
@@ -210,7 +237,7 @@ const printGoals = function (...numbers) {
 
 printGoals(...game.scored);
 
-// condition 7
+condition 7
 team1 < team2 && console.log('Team 1 is more likely to win');
 team2 < team1 && console.log('Team 2 is more likely to win');
 team2 === team1 && console.log('The match is draw');

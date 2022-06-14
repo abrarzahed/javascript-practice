@@ -71,18 +71,198 @@ const restaurant = {
   },
 };
 
-//! Coding Challenge #3
+//! Coding Challenge #4
 
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+/*
+// SOLUTION:
+const camelCaseConverter = function (str) {
+  const words = str.trim().split(' ');
+  const readyArr = [];
+
+  // make camelCase item and push into readyArr
+  for (let item of words) {
+    let nestedArr = item.toLowerCase().split('_');
+    nestedArr[1] = nestedArr[1][0].toUpperCase() + nestedArr[1].slice(1);
+    readyArr.push(nestedArr.join(''));
+  }
+
+  // find the biggest word in readyArr
+  let biggestWord = 0;
+  for (let i of readyArr) {
+    if (i.length > biggestWord) {
+      biggestWord = i.length;
+    }
+  }
+
+  // output the string with padding(padEnd) of same amount of biggest words length. And add ✅ according to amount of index in loop
+  for (let [index, item] of readyArr.entries()) {
+    let str = `${item.padEnd(biggestWord + 3)} ${'✅'.repeat(index + 1)}`;
+    console.log(str);
+  }
+};
+camelCaseConverter(
+  'underscore_case first_name Some_Variable calculate_AGE delayed_departure underscore_case '
+);
+/*
+
+// SECTION: String(all string methods are case sensitive)
+
+/*
+// ==================================== Working with string part 3
+// split and join method
+console.log('a+very+nice+string'.split('+'));
+// console.log('abrar hussen zahed'.split(' '));
+
+const [firstName, lastName] = 'abrar zahed'.split(' ');
+console.log(firstName, lastName);
+
+const newName = ['Mr.', 'Abrar', 'Zahed'].join(' ');
+console.log(newName);
+
+// capitalized string
+const capitalizedString = function (str) {
+  let names = str.split(' ');
+  const upperArray = [];
+  for (let n of names) {
+    upperArray.push(n[0].toUpperCase() + n.slice(1).toLowerCase()); //option 1 : best
+    // upperArray.push(n.replace(n[0], n[0].toUpperCase())); // option 2
+  }
+  return upperArray.join(' ');
+};
+console.log(capitalizedString('abrar hussen zahed'));
+
+// Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(20, '+').padEnd(30, '+'));
+console.log(message.padEnd(20, '+').padStart(30, '+'));
+
+// Example
+const maskCreditCard = function (num) {
+  const str = num + '';
+  const lastFour = str.slice(-4);
+  return lastFour.padStart(str.length, '*');
+};
+console.log(maskCreditCard(36786788));
+console.log(maskCreditCard('73647670'));
+
+// Repeat
+const msg = 'Bad wether...! ';
+console.log(msg.repeat(5));
+
+// example
+const planeInLine = function (n) {
+  console.log(
+    `Due to bad wether, there are ${n} plane waiting in line ${'🛫'.repeat(n)}`
+  );
+};
+planeInLine(10);
+planeInLine(3);
+planeInLine(5);
+*/
+
+/*
+==================================== Working with string part 2
+const airline = 'TAP Air Portugal';
+console.log(airline.toUpperCase());
+console.log(airline.toLowerCase());
+
+example: correct a string format
+const correctString = function (string) {
+  const stringLower = string.toLocaleLowerCase();
+  const stringCorrect = stringLower[0].toUpperCase() + stringLower.slice(1);
+  return stringCorrect;
+};
+console.log(correctString('abRaR'));
+
+example: compare an email
+const normalizedEmailCase = function (email) {
+  return email.toLowerCase().trim();
+};
+console.log(normalizedEmailCase('  AbrarZaheD6986@gmail.Com \n'));
+
+replacing string
+const priceGB = '288,78£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceGB, priceUS);
+
+replacing all
+const announcement =
+  'All passenger please come to boarding door 23. Boarding door 23 !';
+const replacedAnnouncement = announcement.replaceAll('door', 'gate');
+console.log(announcement, '\n', replacedAnnouncement);
+*/
+
+/*
+==================================== Working with string part 1
+const airline = 'TAP Air Portugal';
+console.log(airline.length);
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+Example
+to get the first word
+console.log(airline.slice(0, airline.indexOf(' ')));
+
+to get the last word
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-2));
+console.log(airline.slice(0, -1));
+
+const checkMiddleSeat = function (seat) {
+  B and E are the middle seat
+  let lastLetter = seat.slice(-1);
+  return lastLetter === 'B' || lastLetter === 'E' ? true : false;
+};
+console.log(checkMiddleSeat('11E'));
+*/
+
+//! Coding Challenge #3
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
+
 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+
 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+
 4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
       [FIRST HALF] 17: ⚽️ GOAL
 
-GOOD LUCK 😀
+GOOD LUCK 😀 
 */
 
 const gameEvents = new Map([
@@ -100,16 +280,15 @@ const gameEvents = new Map([
 ]);
 
 /*
-// SOLUTION:
-//1
+SOLUTION:
+condition 1
 const events = [...new Set(gameEvents.values())];
 console.log(events);
 
-// 2
+condition 2
 gameEvents.delete(64);
-console.log(gameEvents);
 
-// 3
+condition 3
 const times = [...gameEvents.keys()];
 const lastEventTime = times[times.length - 1];
 console.log(
@@ -118,7 +297,35 @@ console.log(
   } minutes`
 );
 
-// 4
+condition 4
+for (const [min, event] of gameEvents) {
+  let half = min < 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
+}
+
+console.log(gameEvents);
+*/
+
+/*
+SOLUTION:
+1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+2
+gameEvents.delete(64);
+console.log(gameEvents);
+
+3
+const times = [...gameEvents.keys()];
+const lastEventTime = times[times.length - 1];
+console.log(
+  `An event happened, on average, every ${
+    lastEventTime / gameEvents.size
+  } minutes`
+);
+
+4
 for (const [key, value] of gameEvents) {
   let half = key < 45 ? 'FIRST HALF' : 'SECOND HALF';
   console.log(`[${half}] ${key}: ${value}`);
@@ -129,12 +336,12 @@ for (const [key, value] of gameEvents) {
 
 /*
 const rest = new Map();
-// set element to map
+set element to map
 rest.set('name', 'Classic Italian Restaurant');
 rest.set(1, 'Firenze Italy');
 rest.set(2, 'Lisbon', 'Portugal');
 
-// map.set returns entire map with newly added item so it is possible combine multiple set method together.
+map.set returns entire map with newly added item so it is possible combine multiple set method together.
 rest
   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
   .set('open', 11)
@@ -142,40 +349,40 @@ rest
   .set(true, 'We are open :D')
   .set(false, 'We are closed :(');
 
-// map.get to get item
+map.get to get item
 console.log(rest.get('name'));
 
-// Example
+Example
 const currentTime = 8;
 console.log(
   rest.get(currentTime > rest.get('open') && currentTime < rest.get('close'))
 );
 
-// to check if a key exist in map or not
+to check if a key exist in map or not
 console.log(rest.has('categories'));
 
-// delete an item from map
+delete an item from map
 rest.delete(2);
 
-// array as key in map
+array as key in map
 const arr = [1, 2];
 rest.set(arr, 'Test');
 console.log(rest.get(arr));
 
-// object as key in map
+object as key in map
 rest.set(document.querySelector('h1'), 'Heading');
 
-// clear entire map
-// rest.clear();
+clear entire map
+rest.clear();
 
-// length of map
+length of map
 console.log(rest.size);
 
 console.log(rest);
 */
 
 /*
-// Efficient way to populate map
+Efficient way to populate map
 const questions = new Map([
   ['question', 'What is the best programing language in the world?'],
   [1, 'C'],
@@ -188,22 +395,22 @@ const questions = new Map([
 
 console.log(questions);
 
-// convert an object ino map
+convert an object ino map
 const mapHours = new Map(Object.entries(openingHours));
 console.log(mapHours);
 
-// loop through map
-// Example Quiz app
+loop through map
+Example Quiz app
 console.log(questions.get('question'));
 for (const [key, value] of questions) {
   typeof key === 'number' && console.log(`Answer ${key}: ${value}`);
 }
 
-// const answer = Number(prompt('Your answer'));
+const answer = Number(prompt('Your answer'));
 const answer = 3;
 console.log(questions.get(answer === questions.get('correct')));
 
-// convert map into array
+convert map into array
 console.log([...questions]);
 console.log([...questions.keys()]);
 console.log([...questions.values()]);

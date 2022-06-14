@@ -71,7 +71,92 @@ const restaurant = {
   },
 };
 
-// SECTION: SET
+// SECTION: MAP
+
+/*
+const rest = new Map();
+// set element to map
+rest.set('name', 'Classic Italian Restaurant');
+rest.set(1, 'Firenze Italy');
+rest.set(2, 'Lisbon', 'Portugal');
+
+// map.set returns entire map with newly added item so it is possible combine multiple set method together.
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+// map.get to get item
+console.log(rest.get('name'));
+
+// Example
+const currentTime = 8;
+console.log(
+  rest.get(currentTime > rest.get('open') && currentTime < rest.get('close'))
+);
+
+// to check if a key exist in map or not
+console.log(rest.has('categories'));
+
+// delete an item from map
+rest.delete(2);
+
+// array as key in map
+const arr = [1, 2];
+rest.set(arr, 'Test');
+console.log(rest.get(arr));
+
+// object as key in map
+rest.set(document.querySelector('h1'), 'Heading');
+
+// clear entire map
+// rest.clear();
+
+// length of map
+console.log(rest.size);
+
+console.log(rest);
+*/
+
+/*
+// Efficient way to populate map
+const questions = new Map([
+  ['question', 'What is the best programing language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  ['correct', 3],
+  [true, 'Correct 🎉'],
+  [false, 'Try again'],
+]);
+
+console.log(questions);
+
+// convert an object ino map
+const mapHours = new Map(Object.entries(openingHours));
+console.log(mapHours);
+
+// loop through map
+// Example Quiz app
+console.log(questions.get('question'));
+for (const [key, value] of questions) {
+  typeof key === 'number' && console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('Your answer'));
+const answer = 3;
+console.log(questions.get(answer === questions.get('correct')));
+
+// convert map into array
+console.log([...questions]);
+console.log([...questions.keys()]);
+console.log([...questions.values()]);
+*/
+
+/*
+SECTION: SET
 const orderSet = new Set(['Pizza', 'Pasta', 'Risotto', 'Pizza', 'Pasta']);
 console.log(orderSet);
 
@@ -106,6 +191,7 @@ console.log(new Set('Abrar'));
 
 console.log('==== entire set ====');
 console.log(orderSet);
+*/
 
 // =================================================
 //PROBLEM: Coding Challenge #2
@@ -129,7 +215,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 
 GOOD LUCK 😀
 */
-
+/*
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -170,6 +256,7 @@ const game = {
     team2: 6.5,
   },
 };
+*/
 
 /*
 // SOLUTION:

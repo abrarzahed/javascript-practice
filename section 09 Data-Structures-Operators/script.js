@@ -102,8 +102,38 @@ Afterwards, test with your own test data!
 GOOD LUCK 😀
 */
 
+// SOLUTION: 2 challenge 4
+const convertStringIntoCamelCase = function (str) {
+  const trimmedAndLowerCaseString = str.trim().toLowerCase();
+  const variablesArray = trimmedAndLowerCaseString.split(' ');
+  const readyVariablesArray = [];
+
+  // split and camelCase then push to ready array
+  for (let i of variablesArray) {
+    let [first, second] = i.split('_');
+    second = second.toLowerCase().slice(0, 1).toUpperCase() + second.slice(1);
+    readyVariablesArray.push(first.concat(second));
+  }
+
+  // for largest word length
+  let largestLength = 0;
+  for (let i of readyVariablesArray) {
+    if (largestLength < i.length) largestLength = i.length;
+  }
+
+  // generate string
+  for (let [index, item] of readyVariablesArray.entries()) {
+    console.log(`${item.padEnd(largestLength + 3)} ${'✅'.repeat(index + 1)}`);
+  }
+};
+convertStringIntoCamelCase(
+  'underscore_case first_name Some_Variable calculate_AGE delayed_departure'
+);
+
+// ==========================================================================
+
 /*
-// SOLUTION:
+// SOLUTION: 1
 const camelCaseConverter = function (str) {
   const words = str.trim().split(' ');
   const readyArr = [];

@@ -36,6 +36,7 @@ createBooking('LH321', undefined);
 */
 
 // SECTION: HOW PASSING ARGUMENTS WORKS WITH PREEMPTIVE TYPE AND WITH REFERENCE TYPE
+/*
 const flightNum = 'LH212';
 const passenger = {
   name: 'Abrar Zahed',
@@ -63,3 +64,62 @@ const newPassport = function (person) {
 newPassport(passenger);
 checkIn(flightNum, passenger);
 console.log(flightNum, passenger);
+*/
+
+// SECTION: Higher order function
+/*
+
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
+};
+
+const upperFirstLetter = function (str) {
+  return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+};
+// console.log(upperFirstLetter('aBrar'));
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+// console.log(upperFirstWord('abrar hussen zahed'));
+
+// Higher-order function example
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  //to get the name of callback function just like an object
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('javascript is awesome', upperFirstWord);
+
+console.log('..............................................');
+
+transformer('javascript is awesome', upperFirstLetter);
+
+console.log('..............................................');
+
+transformer('javascript is awesome', oneWord);
+*/
+
+// SECTION: Functions return another function
+
+const greet = function (greetings) {
+  return function (name) {
+    console.log(`${greetings} ${name}`);
+  };
+};
+const greet1 = greet('Hey');
+
+greet1('zahed');
+greet1('abrar');
+greet('hello')('abrar zahed');
+
+const greetArrow = greetings => name => console.log(`${greetings} ${name}`);
+
+const greet2 = greetArrow('Hey');
+greet2('zahed');
+greet2('abrar');
+greetArrow('hello')('abrar zahed');

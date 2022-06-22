@@ -106,6 +106,7 @@ transformer('javascript is awesome', oneWord);
 
 // SECTION: Functions return another function
 
+/*
 const greet = function (greetings) {
   return function (name) {
     console.log(`${greetings} ${name}`);
@@ -123,3 +124,65 @@ const greet2 = greetArrow('Hey');
 greet2('zahed');
 greet2('abrar');
 greetArrow('hello')('abrar zahed');
+*/
+
+/*  
+  COMMENT: Default parameters in function
+*/
+/*
+const bookings = [];
+const createBookings = function (
+  flightNum,
+  numPassenger = 1,
+  price = 199 * numPassenger
+) {
+  // @@@@@@@@@@ ES% way to setting default parameter  @@@@@@@@@@ //
+  // numPassenger = numPassenger || 1
+  // price = price || 199;
+
+  const booking = {
+    flightNum,
+    numPassenger,
+    price,
+  };
+  console.log(booking);
+  bookings.push(booking);
+};
+
+createBookings('FA323');
+createBookings('ER323', 3);
+createBookings('ER323', undefined, 300); // here used undefined in order to use default parameter
+*/
+
+/* 
+  COMMENT: HOW PASSING ARGUMENTS WORKS WITH PREEMPTIVE TYPE AND WITH REFERENCE TYPE
+*/
+/*
+const flightNum = 'LH212';
+const passenger = {
+  name: 'Abrar Zahed',
+  passport: 'ad6986798',
+};
+
+const checkIn = function (flightNum, passenger) {
+  flightNum = 'AT300';
+  passenger.name = 'Mr. ' + passenger.name;
+
+  if (passenger.passport === 'ad6986798') {
+    console.log('Checked In');
+  } else {
+    console.log('Wrong passport');
+  }
+};
+
+// checkIn(flightNum, passenger);
+// console.log(flightNum, passenger);
+
+const newPassport = function (person) {
+  person.passport = Math.trunc(Math.random() * 10000000);
+};
+
+newPassport(passenger);
+checkIn(flightNum, passenger);
+console.log(flightNum, passenger);
+*/

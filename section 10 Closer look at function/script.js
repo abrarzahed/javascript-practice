@@ -270,9 +270,11 @@ recipe2('Kabab');
 */
 
 /* **************************************** 
-COMMENT: the call and apply method   
+COMMENT: the call and apply  method   
 ***************************************** */
 
+// @@@@@@@@@@ The bind method  @@@@@@@@@@ //
+/*
 const bimanBangladesh = {
   airline: 'Biman Bangladesh',
   airCode: 'BM',
@@ -300,8 +302,20 @@ const book = function (flightNum, name) {
 
 // @@@@@@@@@@ Right way to do with call method  @@@@@@@@@@ //
 // INFO: The call method is actually a way to explicitly set the "this" keyword to the object you want.
-book.call(bimanBangladesh, 303, 'Abrar Zahed');
+// book.call(bimanBangladesh, 303, 'Abrar Zahed');
 console.log(bimanBangladesh);
 
 book.call(banglaWings, 32, 'Jon Doe');
 console.log(banglaWings);
+
+  // @@@@@@@@@@ The apply method  @@@@@@@@@@ //
+
+// INFO: Unlike call method the apply method takes an array as its second argument
+const flightData = [343, 'Jorge Miller'];
+book.apply(bimanBangladesh, flightData);
+console.log(bimanBangladesh);
+
+// INFO: But there is an easy and efficient way of doing this by using call method with spread operator
+book.call(banglaWings, ...flightData);
+console.log(banglaWings);
+*/

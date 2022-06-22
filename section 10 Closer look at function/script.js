@@ -154,10 +154,12 @@ createBookings('ER323', 3);
 createBookings('ER323', undefined, 300); // here used undefined in order to use default parameter
 */
 
-/* 
-  COMMENT: HOW PASSING ARGUMENTS WORKS WITH PREEMPTIVE TYPE AND WITH REFERENCE TYPE
-*/
+/* **************************************** 
+COMMENT: HOW PASSING ARGUMENTS WORKS WITH PREEMPTIVE TYPE AND WITH REFERENCE TYPE   
+***************************************** */
 /*
+
+
 const flightNum = 'LH212';
 const passenger = {
   name: 'Abrar Zahed',
@@ -186,3 +188,120 @@ newPassport(passenger);
 checkIn(flightNum, passenger);
 console.log(flightNum, passenger);
 */
+
+/* **************************************** 
+COMMENT:    Higher order function
+***************************************** */
+/*
+//INFO: First class function and higher order function are not same at all. First class function is a term or feature which a programming language either contains or not, thats it. It does not have anything to do in practice. On the other hand higher order function actually does have.
+
+// INFO: What is higher order function? Answer: A higher order function is a function that receive another function(callback function) as an argument or return another function or both.
+
+console.log('============== function oneWord ==============');
+// @@@@@@@@@@ normal function  @@@@@@@@@@ //
+const oneWord = function (str) {
+  return str.replaceAll(' ', '');
+};
+console.log(oneWord('abrar hussen zahed'));
+
+console.log('============== function upperFirstWord ==============');
+// @@@@@@@@@@ normal function  @@@@@@@@@@ //
+const upperFirstWord = function (str) {
+  const [first, ...restWords] = str.split(' ');
+  return [first.toUpperCase(), ...restWords].join(' ');
+};
+console.log(upperFirstWord('abrar hussen zahed'));
+
+// @@@@@@@@@@ higher order function  @@@@@@@@@@ //
+console.log('============== function transformer ==============');
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('javaScript is awesome', oneWord);
+console.log('============== function transformer ==============');
+transformer('javaScript is awesome', upperFirstWord);
+*/
+
+/* **************************************** 
+COMMENT: Functions return another function   
+***************************************** */
+
+/*
+const greet = function (greetings) {
+  return function (name) {
+    console.log(`${greetings} ${name}`);
+  };
+};
+const greet1 = greet('Hey');
+
+greet1('zahed');
+greet1('abrar');
+greet('hello')('abrar zahed');
+
+const greetArrow = greetings => name => console.log(`${greetings} ${name}`);
+
+const greet2 = greetArrow('Hey');
+greet2('zahed');
+greet2('abrar');
+greetArrow('hello')('abrar zahed');
+*/
+
+/*
+// @@@@@@@@@@ with regular function  @@@@@@@@@@ //
+const recipeMaker = function (item) {
+  return function (recipe) {
+    console.log(`${item} ${recipe}`);
+  };
+};
+
+// @@@@@@@@@@ with arrow function  @@@@@@@@@@ //
+// const recipeMaker = item => recipe => console.log(`${item} ${recipe}`);
+
+const recipe1 = recipeMaker('Apple');
+recipe1('juice');
+
+const recipe2 = recipeMaker('Chicken');
+recipe2('Kabab');
+*/
+
+/* **************************************** 
+COMMENT: the call and apply method   
+***************************************** */
+
+const bimanBangladesh = {
+  airline: 'Biman Bangladesh',
+  airCode: 'BM',
+  bookings: [],
+};
+
+const banglaWings = {
+  airline: 'Bangladesh Wings',
+  airCode: 'BW',
+  bookings: [],
+};
+
+const book = function (flightNum, name) {
+  console.log(
+    `${name} booked a set on ${this.airline} flight ${this.airCode}${flightNum}`
+  );
+  this.bookings.push({
+    flight: `${this.airCode}${flightNum}`,
+    passengerName: name,
+  });
+};
+
+// @@@@@@@@@@ Does NOT work  @@@@@@@@@@ //
+// book(32, 'Jon Doe');
+
+// @@@@@@@@@@ Right way to do with call method  @@@@@@@@@@ //
+// INFO: The call method is actually a way to explicitly set the "this" keyword to the object you want.
+book.call(bimanBangladesh, 303, 'Abrar Zahed');
+console.log(bimanBangladesh);
+
+book.call(banglaWings, 32, 'Jon Doe');
+console.log(banglaWings);

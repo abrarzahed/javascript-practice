@@ -274,7 +274,7 @@ COMMENT: the call and apply  method
 ***************************************** */
 
 // @@@@@@@@@@ The bind method  @@@@@@@@@@ //
-/*
+
 const bimanBangladesh = {
   airline: 'Biman Bangladesh',
   airCode: 'BM',
@@ -308,7 +308,7 @@ console.log(bimanBangladesh);
 book.call(banglaWings, 32, 'Jon Doe');
 console.log(banglaWings);
 
-  // @@@@@@@@@@ The apply method  @@@@@@@@@@ //
+// @@@@@@@@@@ The apply method  @@@@@@@@@@ //
 
 // INFO: Unlike call method the apply method takes an array as its second argument
 const flightData = [343, 'Jorge Miller'];
@@ -318,4 +318,5 @@ console.log(bimanBangladesh);
 // INFO: But there is an easy and efficient way of doing this by using call method with spread operator
 book.call(banglaWings, ...flightData);
 console.log(banglaWings);
-*/
+
+// @@@@@@@@@@ The bind method  @@@@@@@@@@ //

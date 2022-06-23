@@ -472,6 +472,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 /* **************************************** 
 COMMENT: Immediately Invoked Function Expressions (IIFE)   
 ***************************************** */
+/*
 const runOnce = function () {
   console.log('This should never run again, But it will');
 };
@@ -494,3 +495,76 @@ runOnce();
 
 // console.log(isPrivate); // will give an error
 // console.log(isPublic); // will run
+*/
+
+/****************************************** 
+COMMENT: The closures   
+******************************************/
+/*
+const secureBooking = function () {
+  let passenger = 0;
+  return function () {
+    passenger++;
+    console.log(`${passenger} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+
+// console.dir(booker);
+
+// @@@@@@@@@@ example 1  @@@@@@@@@@ //
+let f;
+let g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 4;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+h();
+f();
+
+// @@@@@@@@@@ example 2  @@@@@@@@@@ //
+const boardPassengers = function (n, wait) {
+  const passengerPerGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(
+      `There are 3 boarding groups. Each group contains ${passengerPerGroup} passengers`
+    );
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 4);
+// INFO: closures has priority over the scope chain
+*/
+
+/****************************************** 
+COMMENT: Coding challenge 2   
+******************************************/
+/*
+const body = document.body;
+const colorChanger = function () {
+  const header = document.querySelector('h1');
+
+  body.addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+};
+colorChanger();
+*/

@@ -391,8 +391,46 @@ BONUS: Use the 'displayResults' method to display the 2 arrays in the test data.
 BONUS TEST DATA 1: [5, 2, 3]
 BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 
+
 GOOD LUCK 😀
 */
+/*
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section 😃
+  answers: new Array(4).fill(0),
+  registerNewAnswer() {
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+      )
+    );
+    console.log(answer);
+    typeof answer === 'number' &&
+      answer < this.options.length &&
+      this.answers[answer]++;
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(`Results: ${this.answers}`);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+  },
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+*/
+
 /*
 const poll = {
   question: 'What is your favourite programming language?',
@@ -430,3 +468,29 @@ document
 poll.displayResults.call({ answers: [5, 2, 3] });
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 */
+
+/* **************************************** 
+COMMENT: Immediately Invoked Function Expressions (IIFE)   
+***************************************** */
+const runOnce = function () {
+  console.log('This should never run again, But it will');
+};
+runOnce();
+
+// @@@@@@@@@@ with function expression @@@@@@@@@@ //
+(function () {
+  console.log('This will never run again');
+})();
+
+// @@@@@@@@@@ with arrow function  @@@@@@@@@@ //
+(() => console.log('This will ALSO never run again'))();
+
+// INFO: immediately invoked functions are  use to create scopes for certain variables or functions. But in modern javascript there is another way to do this. which is the concept of block
+
+{
+  const isPrivate = 200; // not accessible out side of this block
+  var isPublic = 400; // is accessible out side of this block
+}
+
+// console.log(isPrivate); // will give an error
+// console.log(isPublic); // will run

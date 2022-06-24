@@ -1,10 +1,10 @@
 'use strict';
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
+/****************************************** 
+COMMENT: BANKIST APP   
+******************************************/
 
-// Data
+// @@@@@@@@@@ Data  @@@@@@@@@@ //
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -35,7 +35,7 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
+// @@@@@@@@@@ Elements  @@@@@@@@@@ //
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -61,9 +61,9 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+/****************************************** 
+COMMENT: LECTURES   
+******************************************/
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -74,3 +74,40 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+// @@@@@@@@@@ slice(): Do not mutate the original array  @@@@@@@@@@ //
+console.log(`================= Slice()`);
+console.log(arr.slice(2));
+console.log(arr.slice(2, 4));
+console.log(arr.slice(-2));
+console.log(arr.slice(-1));
+console.log(arr.slice(1, -1));
+console.log(arr.slice(1, -2));
+
+let copyArr = [...arr];
+let copyArr2 = arr.slice();
+console.log(copyArr, copyArr2);
+
+// @@@@@@@@@@ splice(): Does mutate the original array  @@@@@@@@@@ //
+console.log(`================= SPlice()`);
+console.log(arr.splice(2));
+console.log(arr);
+
+// @@@@@@@@@@ reverse(): Does mutate the original array  @@@@@@@@@@ //
+console.log(`================= reverse()`);
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse());
+
+// @@@@@@@@@@ concat(): Does not mutate original arrays  @@@@@@@@@@ //
+console.log(`================= concat()`);
+const letters = arr.concat(arr2); // same as [...arr, ...arr2]
+console.log(letters);
+console.log(arr);
+console.log(arr2);
+
+// @@@@@@@@@@ join(): Does not mutate original array  @@@@@@@@@@ //
+console.log(`================= join()`);
+console.log(letters.join(' - '));
+console.log(letters);

@@ -568,3 +568,14 @@ const colorChanger = function () {
 };
 colorChanger();
 */
+
+const body = document.body;
+
+const colorChanger = function () {
+  const header = document.querySelector('h1');
+  body.addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+};
+
+colorChanger();

@@ -73,8 +73,10 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
-
+/****************************************** 
+COMMENT: Some array methods   
+******************************************/
+/*
 let arr = ['a', 'b', 'c', 'd', 'e'];
 // @@@@@@@@@@ slice(): Do not mutate the original array  @@@@@@@@@@ //
 console.log(`================= Slice()`);
@@ -111,3 +113,61 @@ console.log(arr2);
 console.log(`================= join()`);
 console.log(letters.join(' - '));
 console.log(letters);
+*/
+
+/****************************************** 
+COMMENT: Loop through array   
+******************************************/
+/*
+const movements2 = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// @@@@@@@@@@ with for of loop: continue and break does work @@@@@@@@@@ //
+console.log(`================= for of loop`);
+for (const [i, movement] of movements2.entries()) {
+  if (movement > 0) {
+    console.log(`${i + 1}: You have deposited ${movement}`);
+  } else {
+    console.log(`${i + 1}: You have withdrew ${Math.abs(movement)}`);
+  }
+}
+
+// @@@@@@@@@@ with forEach() method: continue and break does not work @@@@@@@@@@  //
+console.log(`================= forEach() method`);
+movements2.forEach((movement, i, array) => {
+  if (movement > 0) {
+    console.log(`${i + 1}: You have deposited ${movement}`);
+    console.log(array);
+  } else {
+    console.log(`${i + 1}: You have withdrew ${Math.abs(movement)}`);
+    console.log(array);
+  }
+});
+*/
+
+/****************************************** 
+COMMENT: forEach() in map 
+******************************************/
+/*
+console.log(`================= forEach() method in map`);
+const currencies2 = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies2.forEach((value, key, map) => {
+  console.log(`${key}: ${value}`);
+});
+*/
+
+/****************************************** 
+COMMENT: forEach() in set 
+******************************************/
+console.log(`================= forEach() method in set`);
+const uniqueCurrencies = new Set(['USD', 'BDT', 'EUR', 'BDT', 'USD']);
+console.log(uniqueCurrencies);
+
+uniqueCurrencies.forEach((value, _, set) => {
+  // '_' because the set does not have indexes or keys
+  console.log(`${value}: ${value}`);
+  // console.log(set);
+});

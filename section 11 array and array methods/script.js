@@ -162,6 +162,7 @@ currencies2.forEach((value, key, map) => {
 /****************************************** 
 COMMENT: forEach() in set 
 ******************************************/
+/*
 console.log(`================= forEach() method in set`);
 const uniqueCurrencies = new Set(['USD', 'BDT', 'EUR', 'BDT', 'USD']);
 console.log(uniqueCurrencies);
@@ -171,3 +172,4 @@ uniqueCurrencies.forEach((value, _, set) => {
   console.log(`${value}: ${value}`);
   // console.log(set);
 });
+*/

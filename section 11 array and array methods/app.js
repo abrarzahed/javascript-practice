@@ -515,3 +515,58 @@ console.log(movements.includes(-130));
 const anyDeposit = movements.some(mov => mov > 1000);
 console.log(anyDeposit);
 */
+
+/****************************************** 
+COMMENT: The every() method: some method works kind of same as some() method. But big different is every() only returns true if all the elements fullfil the certain condition.
+******************************************/
+/*
+console.log(movements);
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+*/
+
+/****************************************** 
+COMMENT: Separate callback   
+******************************************/
+/*
+const checkDeposit = mov => mov > 0;
+console.log(movements.some(checkDeposit));
+console.log(movements.every(checkDeposit));
+console.log(movements.filter(checkDeposit));
+*/
+
+/****************************************** 
+COMMENT: The flat() and flatMap()   
+******************************************/
+
+// @@@@@@@@@@ flat() method  @@@@@@@@@@ //
+/*
+const arr = [[1, 2, 3], [4, 5, 6, 7], 8, 9];
+console.log(arr.flat());
+
+const arr2LabelDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arr2LabelDeep.flat(2)); // 2 label deep
+
+const accountsMovements = accounts.map(acc => acc.movements);
+console.log(accountsMovements);
+
+const flatMovements = accountsMovements.flat(Infinity); // all label deep: (incase need)
+console.log(flatMovements);
+
+const bigTotal = flatMovements.reduce((acc, cur) => acc + cur, 0);
+
+// @@@@@@@@@@ with chaining  @@@@@@@@@@ //
+const total = accounts
+  .map(acc => acc.movements)
+  .flat(Infinity)
+  .reduce((acc, cur) => acc + cur, 0);
+
+console.log(total, bigTotal);
+
+// @@@@@@@@@@ flatMap() method: flatMap only goes one level deep  @@@@@@@@@@ //
+const total2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, cur) => acc + cur, 0);
+
+console.log(total2);
+*/

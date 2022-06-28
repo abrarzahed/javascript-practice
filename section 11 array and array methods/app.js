@@ -73,23 +73,44 @@ const displayMovement = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__date">3 days ago</div>
           <div class="movements__value">${movement}</div>
         </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', movementHtml);
   });
 };
-displayMovement(account1.movements);
 
 /****************************************** 
 COMMENT: calculate and print total balances   
 ******************************************/
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, cur) => acc + cur, 0);
-  labelBalance.textContent = `${balance} EUR`;
+const calcDisplayBalance = function (account) {
+  account.balance = account.movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = `${account.balance} EUR`;
 };
-calcDisplayBalance(account1.movements);
+
+/****************************************** 
+COMMENT: display summery   
+******************************************/
+const calcDisplaySummery = function (account) {
+  const incomes = account.movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${Math.abs(incomes)}€`;
+
+  const out = account.movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = account.movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * account.interestRate) / 100)
+    .filter((int, i, arr) => {
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
 
 /****************************************** 
 COMMENT: Create username   
@@ -104,6 +125,104 @@ const createUserName = function (accounts) {
   });
 };
 createUserName(accounts);
+
+/****************************************** 
+COMMENT: Update ui   
+******************************************/
+const updateUI = function (account) {
+  // display movements
+  displayMovement(account.movements);
+
+  // display balance
+  calcDisplayBalance(account);
+
+  // display summery
+  calcDisplaySummery(account);
+};
+
+/****************************************** 
+COMMENT: Event handlers   
+******************************************/
+/* 
+  COMMENT: Log in
+*/
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.userName === inputLoginUsername.value
+  );
+  // console.log(currentAccount);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display ui with welcome message
+    labelWelcome.textContent = `Welcome back ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 1;
+
+    // clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // updating ui
+    updateUI(currentAccount);
+  }
+});
+
+/* 
+  COMMENT: Transfer money
+*/
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const ReceiverAccount = accounts.find(
+    ac => ac.userName === inputTransferTo.value
+  );
+
+  if (
+    amount > 0 &&
+    ReceiverAccount &&
+    currentAccount.balance >= amount &&
+    ReceiverAccount?.userName !== currentAccount.userName
+  ) {
+    //doing the transfer
+    currentAccount.movements.push(-amount);
+    ReceiverAccount.movements.push(amount);
+
+    // updating ui
+    updateUI(currentAccount);
+  }
+  inputTransferAmount.value = inputTransferTo.value = '';
+  inputTransferTo.blur();
+});
+
+/* 
+  COMMENT: request loan
+*/
+
+/* 
+  COMMENT: Close account
+*/
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const accountToClose = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+
+    // remove account from accounts array
+    accounts.splice(accountToClose, 1);
+
+    // hide ui
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+  inputClosePin.blur();
+});
 
 /****************************************** 
 COMMENT: LECTURES   
@@ -350,4 +469,36 @@ const calcAverageHumanAge = function (ages) {
 const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
+*/
+
+/****************************************** 
+COMMENT: The find() method: unlike the filter, find returns the first element which satisfy certain condition
+******************************************/
+/*
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
+
+// @@@@@@@@@@ with for of loop  @@@@@@@@@@ //
+let acc2;
+for (const ac of accounts) {
+  ac.owner === 'Steven Thomas Williams' && (acc2 = ac);
+}
+
+console.log(acc2);
+*/
+
+/****************************************** 
+COMMENT: The some() method: some method works kind of same as includes() method. The difference is includes checks the equality. And some method can check an element exist in array with any condition.
+******************************************/
+/*
+// @@@@@@@@@@ EQUALITY: with includes() method  @@@@@@@@@@ //
+console.log(movements);
+console.log(movements.includes(-130));
+
+// @@@@@@@@@@ CONDITION: some() method  @@@@@@@@@@ //
+const anyDeposit = movements.some(mov => mov > 1000);
+console.log(anyDeposit);
 */

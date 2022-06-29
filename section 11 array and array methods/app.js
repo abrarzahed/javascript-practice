@@ -51,7 +51,8 @@ const btnLogin = document.querySelector('.login__btn');
 const btnTransfer = document.querySelector('.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
-const btnSort = document.querySelector('.btn--sort');
+const btnSort1 = document.querySelector('.btn--sort1');
+const btnSort2 = document.querySelector('.btn--sort2');
 
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -64,9 +65,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /****************************************** 
 COMMENT: display movement rows   
 ******************************************/
-const displayMovement = function (movements) {
+const displayMovement = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach((movement, i) => {
+
+  // sorting
+  const moves = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  moves.forEach((movement, i) => {
     const type = movement > 0 ? 'deposit' : 'withdrawal';
     const movementHtml = `
     <div class="movements__row">
@@ -235,6 +240,17 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
   inputClosePin.blur();
+});
+
+/* 
+  COMMENT: sorting movements
+*/
+let isSorted = false;
+btnSort1.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  displayMovement(currentAccount.movements, !isSorted);
+  isSorted = !isSorted;
 });
 
 /****************************************** 
@@ -569,4 +585,69 @@ const total2 = accounts
   .reduce((acc, cur) => acc + cur, 0);
 
 console.log(total2);
+*/
+
+/****************************************** 
+COMMENT: The sort() method: Mutate the original array   
+******************************************/
+/*
+// With string
+const names = ['jonas', 'zara', 'abrar', 'zahed'];
+console.log(names.sort());
+console.log(names);
+
+// With number
+console.log(movements);
+
+// ascending order
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// descending order
+movements.sort((a, b) => b - a);
+console.log(movements);
+*/
+
+/****************************************** 
+COMMENT: The fill() method: use to dynamically fill the array. Its mutate the original array  
+******************************************/
+/*
+const arr = new Array(7);
+console.log(arr);
+
+arr.fill(1, 3, 5);
+console.log(arr);
+*/
+
+/****************************************** 
+COMMENT: from() method   
+******************************************/
+/*
+const arr = Array.from({ length: 10 }, () => 1);
+console.log(arr);
+
+const arr2 = Array.from({ length: 10 }, (_, i) => i + 1);
+console.log(arr2);
+
+const hundredRandomNum = Array.from({ length: 100 }, () =>
+  Math.floor(Math.random() * 100 + 1)
+);
+
+console.log(hundredRandomNum);
+console.log(hundredRandomNum.some(num => num == 100));
+*/
+
+// @@@@@@@@@@ Example  @@@@@@@@@@ //
+/*
+document.querySelector('.logo').addEventListener('click', () => {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => {
+      const elm = el.textContent.replace('Ă', '');
+      console.log(typeof elm);
+      return Number(elm);
+    }
+  );
+  console.log(movementsUI);
+});
 */

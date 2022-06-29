@@ -100,6 +100,7 @@ COMMENT: MAIN
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 2rem;
+  gap: 3rem !important;
 }
 
 .balance__label {
@@ -300,4 +301,48 @@ COMMENT: End exceptions
 
 .timer {
   font-weight: 600;
+}
+
+/* **************************************** 
+COMMENT: Media query   
+***************************************** */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 2rem;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .logo {
+    order: -1;
+  }
+  .app {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .movements {
+    width: 100% !important;
+    grid-column: 1 / -1;
+  }
+  .operation {
+    grid-column: 1 / -1;
+  }
+  .logout-timer {
+    grid-column: 1 / -1;
+  }
+  .summary {
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .balance {
+    grid-column: 1 / -1;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

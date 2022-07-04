@@ -272,3 +272,33 @@ btnSort1.addEventListener('click', function (e) {
 /****************************************** 
 COMMENT:  LECTURES   
 ******************************************/
+console.log(23 === 23.0);
+
+console.log(0.1 + 0.2 === 0.3); // bug in javascript
+
+/* 
+  COMMENT: convert string number
+*/
+console.log('23', Number('23'));
+console.log('200', +'200');
+
+/* 
+  COMMENT: Parsing
+*/
+
+// parsInt(): It will convert a string to a number with omitting non numeric value. But only works if that string is starts with numeric integer value.
+console.log(Number.parseInt('30px'));
+
+// parsefloat(): It works same as parseInt(). But the different is, it also works with floating point number.
+console.log(Number.parseInt('2.5rem')); // it won't return 2.5
+console.log(Number.parseFloat('2.5rem'));
+
+// isNan()
+console.log(Number.isNaN(20));
+console.log(Number.isNaN(+'20x'));
+
+// isFinite(): is the best way to check if the value is a number or not.
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20x'));
+console.log(Number.isFinite(20 / 0)); //  false because it will return infinity

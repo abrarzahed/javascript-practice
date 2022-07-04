@@ -1,9 +1,3 @@
-/*
- * Use this CSS to learn some intersting techniques,
- * in case you're wondering how I built the UI.
- * Have fun! 😁
- */
-
 * {
   margin: 0;
   padding: 0;
@@ -83,7 +77,9 @@ nav {
   color: #777;
 }
 
-/* MAIN */
+/* **************************************** 
+COMMENT: MAIN   
+***************************************** */
 .app {
   position: relative;
   max-width: 100rem;
@@ -93,7 +89,7 @@ nav {
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
 
-  /* NOTE This creates the fade in/out anumation */
+  /* NOTE This creates the fade in/out animation */
   opacity: 0;
   transition: all 1s;
 }
@@ -104,6 +100,7 @@ nav {
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 2rem;
+  gap: 3rem !important;
 }
 
 .balance__label {
@@ -122,7 +119,9 @@ nav {
   font-weight: 400;
 }
 
-/* MOVEMENTS */
+/* **************************************** 
+COMMENT: MOVEMENTS   
+***************************************** */
 .movements {
   grid-row: 2 / span 3;
   background-color: #fff;
@@ -167,7 +166,9 @@ nav {
   margin-left: auto;
 }
 
-/* SUMMARY */
+/* **************************************** 
+COMMENT: SUMMARY   
+***************************************** */
 .summary {
   grid-row: 5 / 6;
   display: flex;
@@ -206,7 +207,9 @@ nav {
   cursor: pointer;
 }
 
-/* OPERATIONS */
+/* **************************************** 
+COMMENT: OPERATIONS   
+***************************************** */
 .operation {
   border-radius: 1rem;
   padding: 3rem 4rem;
@@ -239,15 +242,19 @@ h2 {
   gap: 0.4rem 1rem;
 }
 
-/* Exceptions for interst */
+/* **************************************** 
+COMMENT: Exceptions for interest   
+***************************************** */
 .form.form--loan {
   grid-template-columns: 2.5fr 1fr 2.5fr;
 }
 .form__label--loan {
   grid-row: 2;
 }
-/* End exceptions */
 
+/* **************************************** 
+COMMENT: End exceptions   
+***************************************** */
 .form__input {
   width: 100%;
   border: none;
@@ -294,4 +301,48 @@ h2 {
 
 .timer {
   font-weight: 600;
+}
+
+/* **************************************** 
+COMMENT: Media query   
+***************************************** */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 2rem;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .logo {
+    order: -1;
+  }
+  .app {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .movements {
+    width: 100% !important;
+    grid-column: 1 / -1;
+  }
+  .operation {
+    grid-column: 1 / -1;
+  }
+  .logout-timer {
+    grid-column: 1 / -1;
+  }
+  .summary {
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .balance {
+    grid-column: 1 / -1;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

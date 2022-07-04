@@ -212,7 +212,7 @@ COMMENT: OPERATIONS
 ***************************************** */
 .operation {
   border-radius: 1rem;
-  padding: 3rem 4rem;
+  padding: 3rem;
   color: #333;
 }
 

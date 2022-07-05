@@ -323,14 +323,16 @@ btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Math.floor(inputLoanAmount.value);
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    //=== add movement  ===//
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      //=== add movement  ===//
+      currentAccount.movements.push(amount);
 
-    //=== Add loan date  ===//
-    currentAccount.movementsDates.push(new Date().toISOString());
+      //=== Add loan date  ===//
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    //=== update ui  ===//
-    updateUI(currentAccount);
+      //=== update ui  ===//
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
@@ -588,3 +590,27 @@ console.log('US: ', new Intl.NumberFormat('en-US', options).format(num));
 console.log('GB: ', new Intl.NumberFormat('en-GB', options).format(num));
 console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
 */
+
+/* 
+  COMMENT: Timers
+*/
+//=== setTimeOut()  ===//
+/*
+const ingredients = ['mushrooms', ''];
+
+const pizzaOrderTimer = setTimeout(
+  () => {
+    console.log(`Here is your pizza 🍕 with ${ingredients.join(' and ')}`);
+  },
+  1000,
+  ingredients
+);
+
+if (ingredients.includes('spinach')) clearTimeout(pizzaOrderTimer);
+*/
+
+//=== setInterval()  ===//
+setInterval(function () {
+  const date = new Date();
+  console.log(date);
+}, 1000);

@@ -72,6 +72,11 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /****************************************** 
 COMMENT: display movement rows   
 ******************************************/
+
+/* 
+  COMMENT: utility functions
+*/
+
 const formatMovements = function (date, locale) {
   const calcDatePassed = function (date1, date2) {
     return Math.round(Math.abs((date2 - date1) / (1000 * 60 * 60 * 24)));
@@ -94,6 +99,17 @@ const formatMovements = function (date, locale) {
   }
 };
 
+const formatCurrency = function (value, locale, currency) {
+  const options = {
+    style: 'currency',
+    currency: currency,
+    maximumFractionDigits: 2,
+  };
+  const formattedValue = new Intl.NumberFormat(locale, options).format(value);
+
+  return formattedValue;
+};
+
 const displayMovement = function (account, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -108,13 +124,19 @@ const displayMovement = function (account, sort = false) {
     const date = new Date(account.movementsDates[i]);
     const displayDate = formatMovements(date, account.locale);
 
+    const formattedMov = formatCurrency(
+      movement,
+      account.locale,
+      account.currency
+    );
+
     const movementHtml = `
     <div class="movements__row">
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
     <div class="movements__date">${displayDate.toLocaleString()}</div>
-          <div class="movements__value">${movement.toFixed(2)}</div>
+          <div class="movements__value">${formattedMov}</div>
         </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', movementHtml);
@@ -126,23 +148,40 @@ COMMENT: calculate and print total balances
 ******************************************/
 const calcDisplayBalance = function (account) {
   account.balance = account.movements.reduce((acc, cur) => acc + cur, 0);
-  labelBalance.textContent = `${account.balance.toFixed(2)} EUR`;
+
+  labelBalance.textContent = formatCurrency(
+    account.balance,
+    account.locale,
+    account.currency
+  );
 };
 
 /****************************************** 
 COMMENT: display summery   
 ******************************************/
+//=== incomes: Deposits, loan, got transfer  ===//
 const calcDisplaySummery = function (account) {
   const incomes = account.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${Math.abs(incomes.toFixed(2))}€`;
+  labelSumIn.textContent = formatCurrency(
+    incomes,
+    account.locale,
+    account.currency
+  );
 
+  //=== out: withdrawal  ===//
   const out = account.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
+  labelSumOut.textContent = formatCurrency(
+    Math.abs(out),
+    account.locale,
+    account.currency
+  );
+
+  //=== transfer  ===//
   const interest = account.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * account.interestRate) / 100)
@@ -150,7 +189,12 @@ const calcDisplaySummery = function (account) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+
+  labelSumInterest.textContent = formatCurrency(
+    interest,
+    account.locale,
+    account.currency
+  );
 };
 
 /****************************************** 
@@ -521,9 +565,10 @@ const options = {
   month: 'long',
   year: 'numeric',
 };
-const internationalizedDate = Intl.DateTimeFormat(undefined, options).format(
-  now
-);
+const internationalizedDate = new Intl.DateTimeFormat(
+  undefined,
+  options
+).format(now);
 
 console.log(internationalizedDate);
 */
@@ -531,4 +576,15 @@ console.log(internationalizedDate);
 /* 
   COMMENT: Internationalization numbers
 */
-const num = 32735.75;
+/*
+const num = 2100.45;
+
+const options = {
+  style: 'currency',
+  currency: 'USD',
+};
+
+console.log('US: ', new Intl.NumberFormat('en-US', options).format(num));
+console.log('GB: ', new Intl.NumberFormat('en-GB', options).format(num));
+console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num));
+*/

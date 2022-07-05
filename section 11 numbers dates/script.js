@@ -329,6 +329,7 @@ const randomInt = function (max, min) {
 console.log(randomInt(20, 10));
 */
 
+/*
 // @@@@@@@@@@ Rounding integers numbers  @@@@@@@@@@ //
 console.log(Math.trunc(23.3));
 
@@ -346,3 +347,30 @@ console.log((2.7).toFixed(0));
 console.log((2.7).toFixed(2));
 console.log((2.744).toFixed(2));
 console.log(+(2.345).toFixed(2)); // to convert the result into number
+*/
+
+/* 
+  COMMENT: Remainder operator.
+*/
+console.log(5 % 2);
+console.log(5 / 2);
+console.log(8 % 3);
+console.log(8 % 2);
+
+//  check is a number even or odd
+const check_even_odd = function (num) {
+  let strCommon = `And remainder is ${num % 2}`;
+  return num % 2 === 0
+    ? `Number ${num} is even. ${strCommon}`
+    : `Number ${num} is odd. ${strCommon}`;
+};
+
+console.log(check_even_odd(12));
+
+labelBalance.addEventListener('click', function () {
+  document.querySelectorAll('.movements__row').forEach((row, i) => {
+    if (i % 2 === 0) {
+      row.style.background = 'gray';
+    }
+  });
+});

@@ -222,6 +222,7 @@ btnLogin.addEventListener('click', function (e) {
     labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
       now
     );
+
     /*
     const day = `${now.getDate()}`.padStart(2, 0);
     const month = `${now.getMonth()}`.padStart(2, 0);
@@ -507,3 +508,27 @@ const calcDatePassed = function (date1, date2) {
 const days1 = calcDatePassed(new Date(2040, 3, 14), new Date(2040, 3, 4));
 console.log(days1);
 */
+
+/* 
+   COMMENT: Internationalization with date
+*/
+/*
+const now = new Date();
+const options = {
+  minute: 'numeric',
+  hour: 'numeric',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+};
+const internationalizedDate = Intl.DateTimeFormat(undefined, options).format(
+  now
+);
+
+console.log(internationalizedDate);
+*/
+
+/* 
+  COMMENT: Internationalization numbers
+*/
+const num = 32735.75;

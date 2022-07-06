@@ -232,12 +232,33 @@ COMMENT: Event handlers
   COMMENT: Log in
 */
 
-let currentAccount;
+const handleLogout = function () {
+  const tick = function () {
+    const min = `${Math.trunc(time / 60)}`.padStart(2, 0);
+    const sec = `${Math.trunc(time % 60)}`.padStart(2, 0);
+    //=== in each call print the remaining time to UI  ===//
+    labelTimer.textContent = `${min}:${sec}`;
 
-//=== FAKE ALWAYS LOGGED IN  ===//
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 1;
+    //=== when 0 seconds, stop timer and logout user  ===//
+    if (time === 0) {
+      clearInterval(logoutTimer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    //=== decrease by one second  ===//
+    time--;
+  };
+  //=== set time to 5 seconds  ===//
+  let time = 300;
+
+  //=== call timer in every seconds  ===//
+  tick();
+  const logoutTimer = setInterval(tick, 1000);
+  return logoutTimer;
+};
+
+let currentAccount, timer;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -282,6 +303,10 @@ btnLogin.addEventListener('click', function (e) {
 
     //=== updating ui  ===//
     updateUI(currentAccount);
+
+    //=== logout timer  ===//
+    if (timer) clearInterval(timer);
+    timer = handleLogout();
   }
 });
 
@@ -311,6 +336,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     //=== updating ui  ===//
     updateUI(currentAccount);
+
+    //=== reset timer  ===//
+    clearInterval(timer);
+    timer = handleLogout();
   }
   inputTransferAmount.value = inputTransferTo.value = '';
   inputTransferTo.blur();
@@ -332,6 +361,10 @@ btnLoan.addEventListener('click', function (e) {
 
       //=== update ui  ===//
       updateUI(currentAccount);
+
+      //=== reset timer  ===//
+      clearInterval(timer);
+      timer = handleLogout();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -369,7 +402,7 @@ let isSorted = false;
 btnSort1.addEventListener('click', function (e) {
   e.preventDefault();
 
-  displayMovement(currentAccount.movements, !isSorted);
+  displayMovement(currentAccount, !isSorted);
   isSorted = !isSorted;
 });
 
@@ -610,7 +643,18 @@ if (ingredients.includes('spinach')) clearTimeout(pizzaOrderTimer);
 */
 
 //=== setInterval()  ===//
+/*
+const options = {
+  second: 'numeric',
+  minute: 'numeric',
+  hour: 'numeric',
+};
 setInterval(function () {
   const date = new Date();
-  console.log(date);
+  const timeString = new Intl.DateTimeFormat(
+    navigator.language,
+    options
+  ).format(date);
+  labelBalance.textContent = timeString;
 }, 1000);
+*/

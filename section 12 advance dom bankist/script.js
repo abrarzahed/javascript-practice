@@ -37,7 +37,41 @@ const section1 = document.querySelector('#section--1');
 btnScrollTo.addEventListener('click', function (e) {
   //=== getBoundingClientRect() used masseurs according to visible viewport  ===//
   const s1cords = section1.getBoundingClientRect();
-  console.log(s1cords);
+  // console.log(s1cords);
+
+  // console.log(e.target.getBoundingClientRect());
+
+  // console.log(
+  //   'current page scroll x/y',
+  //   window.pageXOffset,
+  //   window.pageYOffset
+  // );
+
+  // console.log(
+  //   'vewport height/width',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  //=== old way  ===//
+  /*
+  window.scrollTo(
+    s1cords.left + window.pageXOffset,
+    s1cords.top + window.pageYOffset
+  );
+  */
+
+  //=== old way with smooth transition  ===//
+  /*
+  window.scrollTo({
+    left: s1cords.left + window.pageXOffset,
+    top: s1cords.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
+  */
+
+  //=== modern way for modern browsers  ===//
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 /****************************************** 

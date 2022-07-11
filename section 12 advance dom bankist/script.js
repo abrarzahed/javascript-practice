@@ -191,3 +191,33 @@ logo.classList.remove();
 logo.classList.toggle('test');
 logo.classList.contains('test');
 */
+
+/* 
+  COMMENT: Events and Event handlers
+*/
+
+// another way of calling events(old school way)
+/*
+h1.onmouseenter = function (e) { 
+  alert('reading the heading again');
+};
+*/
+
+/*
+// new and modern way
+const h1 = document.querySelector('h1');
+h1.addEventListener('mouseover', function (e) {
+  alert('reading the heading');
+});
+*/
+
+//=== Remove event handlers  ===//
+/*
+const h1 = document.querySelector('h1');
+const alert1 = function (e) {
+  alert('reading the heading');
+
+  h1.removeEventListener('mouseenter', alert1);
+};
+h1.addEventListener('mouseenter', alert1);
+*/

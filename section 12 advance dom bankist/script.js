@@ -1,13 +1,17 @@
 'use strict';
-
 /****************************************** 
-COMMENT: Modal window   
+COMMENT: Selection   
 ******************************************/
-
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+/****************************************** 
+COMMENT: Modal window   
+******************************************/
 
 const openModal = function (e) {
   e.preventDefault();
@@ -30,9 +34,6 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', function (e) {
   //=== getBoundingClientRect() used masseurs according to visible viewport  ===//
@@ -72,6 +73,27 @@ btnScrollTo.addEventListener('click', function (e) {
 
   //=== modern way for modern browsers  ===//
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+/*
+document.querySelectorAll('.nav__link').forEach(el => {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = this.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+});
+*/
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  // console.log(e.target);
+
+  //=== matching strategy  ===//
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 });
 
 /****************************************** 
@@ -225,6 +247,7 @@ h1.addEventListener('mouseenter', alert1);
 /* 
   COMMENT: Event propagation
 */
+/*
 const randomInt = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -257,3 +280,8 @@ nav.addEventListener(
   },
   true
 );
+*/
+
+/* 
+  COMMENT: Dom traversing
+*/

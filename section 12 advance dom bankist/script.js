@@ -221,3 +221,39 @@ const alert1 = function (e) {
 };
 h1.addEventListener('mouseenter', alert1);
 */
+
+/* 
+  COMMENT: Event propagation
+*/
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+const nav_link = document.querySelector('.nav__link');
+const nav_links = document.querySelector('.nav__links');
+const nav = document.querySelector('.nav');
+
+nav_link.addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('link', e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
+
+  //=== Stop Propagation  ===//
+  e.stopPropagation();
+});
+
+nav_links.addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('link container', e.target, e.currentTarget);
+});
+
+nav.addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('nav', e.target, e.currentTarget);
+  },
+  true
+);

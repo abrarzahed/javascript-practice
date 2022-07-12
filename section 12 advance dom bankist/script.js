@@ -1,7 +1,7 @@
 'use strict';
-/****************************************** 
-COMMENT: Selection   
-******************************************/
+/* 
+  COMMENT: Selection 
+*/
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const modal = document.querySelector('.modal');
@@ -9,10 +9,13 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
-/****************************************** 
-COMMENT: Modal window   
-******************************************/
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
+/* 
+  COMMENT: Modal window 
+*/
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -94,6 +97,27 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
+});
+
+/* 
+  COMMENT: Tab component
+*/
+
+tabsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+
+  //=== activate tab button  ===//
+  tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  //=== activate tab content  ===//
+  tabsContent.forEach(tc => tc.classList.remove('operations__content--active'));
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
 
 /****************************************** 
@@ -285,6 +309,7 @@ nav.addEventListener(
 /* 
   COMMENT: Dom traversing
 */
+/*
 const h1 = document.querySelector('h1');
 //=== downwards: selecting child  ===//
 
@@ -319,3 +344,4 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(el => {
   if (el !== h1) el.style.transform = 'scale(.5)';
 });
+*/

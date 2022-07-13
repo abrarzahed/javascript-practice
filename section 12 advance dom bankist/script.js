@@ -2,6 +2,7 @@
 /* 
   COMMENT: Selection 
 */
+const header = document.querySelector('.header');
 const nav = document.querySelector('.nav');
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
@@ -146,6 +147,35 @@ nav.addEventListener('mouseover', function (e) {
 nav.addEventListener('mouseout', function (e) {
   handleNavHover(e, 1, 'scale(1)');
 });
+
+/* 
+  COMMENT: Sticky Navigation
+*/
+/*
+//=== this is not a good way to do this task  ===//
+const initialCords = section1.getBoundingClientRect();
+window.addEventListener('scroll', function (e) {
+  if (window.scrollY > initialCords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
+*/
+
+/* 
+  COMMENT: Sticky Navigation with intersection observer API
+*/
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+headerObserver.observe(header);
 
 /****************************************** 
 COMMENT: practice   

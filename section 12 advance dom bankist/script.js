@@ -16,6 +16,9 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
+const allSections = document.querySelectorAll('.section');
+const lazyImages = document.querySelectorAll('img[data-src]');
+
 /* 
   COMMENT: Modal window 
 */
@@ -153,6 +156,7 @@ nav.addEventListener('mouseout', function (e) {
 */
 /*
 //=== this is not a good way to do this task  ===//
+
 const initialCords = section1.getBoundingClientRect();
 window.addEventListener('scroll', function (e) {
   if (window.scrollY > initialCords.top) nav.classList.add('sticky');
@@ -176,6 +180,66 @@ const headerObserver = new IntersectionObserver(stickyNav, {
   rootMargin: `-${navHeight}px`,
 });
 headerObserver.observe(header);
+
+/* 
+  COMMENT: Reveal Section Animation
+*/
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+
+  //=== always animate  ===//
+  /*
+  if (!entry.isIntersecting) {
+    entry.target.classList.add('section--hidden');
+  } else {
+    entry.target.classList.remove('section--hidden');
+  }
+  */
+  if (!entry.isIntersecting) return e;
+
+  entry.target.classList.remove('section--hidden');
+
+  observer.unobserve(e.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(section => {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
+/* 
+  COMMENT: Lazy loading images
+*/
+const loadImages = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  //=== replace src with data-src  ===//
+  entry.target.setAttribute('src', entry.target.dataset.src);
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  //=== stop observing  ===//
+  observer.unobserve(entry.target);
+};
+
+const imageObserver = new IntersectionObserver(loadImages, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+lazyImages.forEach(img => {
+  imageObserver.observe(img);
+});
 
 /****************************************** 
 COMMENT: practice   

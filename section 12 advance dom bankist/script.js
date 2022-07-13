@@ -2,6 +2,8 @@
 /* 
   COMMENT: Selection 
 */
+const nav = document.querySelector('.nav');
+
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const modal = document.querySelector('.modal');
@@ -102,7 +104,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 /* 
   COMMENT: Tab component
 */
-
 tabsContainer.addEventListener('click', function (e) {
   e.preventDefault();
   const clicked = e.target.closest('.operations__tab');
@@ -118,6 +119,32 @@ tabsContainer.addEventListener('click', function (e) {
   document
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
+});
+
+/* 
+  COMMENT: Menu fade animation
+*/
+const handleNavHover = function (event, opacity, scale) {
+  if (event.target.classList.contains('nav__link')) {
+    const target = event.target;
+    const siblings = target.closest('.nav').querySelectorAll('.nav__link');
+    const logo = target.closest('.nav').querySelector('img');
+    siblings.forEach(el => {
+      if (el !== target) {
+        el.style.opacity = opacity;
+        el.style.transform = scale;
+      }
+    });
+    logo.style.opacity = opacity;
+    // logo.style.transform = scale;
+  }
+};
+
+nav.addEventListener('mouseover', function (e) {
+  handleNavHover(e, 0.5, 'scale(.9)');
+});
+nav.addEventListener('mouseout', function (e) {
+  handleNavHover(e, 1, 'scale(1)');
 });
 
 /****************************************** 

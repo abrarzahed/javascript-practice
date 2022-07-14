@@ -558,3 +558,21 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = 'scale(.5)';
 });
 */
+
+/* 
+  COMMENT: Dom lifecycle events
+*/
+/*
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('DOMContentLoaded', e);
+});
+
+document.addEventListener('load', function (e) {
+  console.log('load', e);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  e.returnValue = '';
+});
+*/

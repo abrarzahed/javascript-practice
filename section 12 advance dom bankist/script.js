@@ -19,6 +19,11 @@ const tabsContent = document.querySelectorAll('.operations__content');
 const allSections = document.querySelectorAll('.section');
 const lazyImages = document.querySelectorAll('img[data-src]');
 
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const sliderBtnLeft = document.querySelector('.slider__btn--left');
+const sliderBtnRight = document.querySelector('.slider__btn--right');
+
 /* 
   COMMENT: Modal window 
 */
@@ -195,11 +200,11 @@ const revealSection = function (entries, observer) {
     entry.target.classList.remove('section--hidden');
   }
   */
-  if (!entry.isIntersecting) return e;
+  if (!entry.isIntersecting) return;
 
   entry.target.classList.remove('section--hidden');
 
-  observer.unobserve(e.target);
+  observer.unobserve(entry.target);
 };
 
 const sectionObserver = new IntersectionObserver(revealSection, {
@@ -239,6 +244,51 @@ const imageObserver = new IntersectionObserver(loadImages, {
 
 lazyImages.forEach(img => {
   imageObserver.observe(img);
+});
+
+/* 
+  COMMENT: Slider
+*/
+// slider.style.overflow = 'visible';
+
+const goToSlide = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+goToSlide(0);
+
+let currentSlide = 0;
+let maxSlide = slides.length - 1;
+
+//=== next slide  ===//
+const nextSlide = function () {
+  if (currentSlide === maxSlide) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+
+  goToSlide(currentSlide);
+};
+sliderBtnRight.addEventListener('click', nextSlide);
+
+//=== previous slide  ===//
+const prevSlide = function () {
+  if (currentSlide === 0) {
+    currentSlide = maxSlide;
+  } else {
+    currentSlide--;
+  }
+  goToSlide(currentSlide);
+};
+sliderBtnLeft.addEventListener('click', prevSlide);
+
+//=== next and prev using arrow key  ===//
+document.addEventListener('keydown', function (e) {
+  e.key === 'ArrowLeft' && prevSlide();
+  e.key === 'ArrowRight' && nextSlide();
 });
 
 /****************************************** 

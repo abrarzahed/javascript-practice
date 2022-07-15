@@ -9,10 +9,6 @@ const Person = function (firstName, birthYear) {
   //=== Instance property  ===//
   this.firstName = firstName;
   this.birthYear = birthYear;
-
-  this.calcAge = function () {
-    console.log(2022 - this.birthYear);
-  };
 };
 
 const abrar = new Person('Abrar', 1994);
@@ -21,14 +17,39 @@ console.log(abrar);
 const zahed = new Person('Zahed', 1994);
 console.log(zahed);
 
-const nam = {
-  firstName: 'Abrar Hussen',
-  birthYear: 1980,
+console.log(abrar instanceof Person);
+
+/* 
+  COMMENT: Prototypes:
+*/
+console.log(Person.prototype);
+
+//=== adding method to prototype   ===//
+Person.prototype.calcAge = function () {
+  return console.log(2022 - this.birthYear);
 };
 
-console.log(nam);
+const jamal = new Person('Jamal', 1980);
+console.log(jamal);
 
-console.log(abrar instanceof Person);
-console.log(nam instanceof Person);
+jamal.calcAge();
 
-console.log(abrar.calcAge());
+//=== adding property to prototype  ===//
+Person.prototype.species = 'Homo Sapiens';
+
+console.log(abrar.species, zahed.species);
+
+/*
+const keys = Object.keys(abrar);
+keys.push('test');
+console.log(keys);
+
+keys.forEach(k => {
+  if (abrar.hasOwnProperty(k)) {
+    console.log(k);
+  }
+});
+*/
+
+console.log(abrar.hasOwnProperty('firstName'));
+console.log(abrar.hasOwnProperty('species'));

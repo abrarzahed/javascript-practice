@@ -39,17 +39,14 @@ Person.prototype.species = 'Homo Sapiens';
 
 console.log(abrar.species, zahed.species);
 
-/*
-const keys = Object.keys(abrar);
-keys.push('test');
-console.log(keys);
-
-keys.forEach(k => {
-  if (abrar.hasOwnProperty(k)) {
-    console.log(k);
-  }
-});
-*/
-
 console.log(abrar.hasOwnProperty('firstName'));
 console.log(abrar.hasOwnProperty('species'));
+
+console.log(Person.prototype);
+console.log(abrar.__proto__);
+
+console.log(abrar.__proto__ === Person.prototype);
+
+console.log(Person.prototype.isPrototypeOf(abrar));
+console.log(Person.prototype.isPrototypeOf(zahed));
+console.log(Person.prototype.isPrototypeOf(Person));

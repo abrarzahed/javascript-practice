@@ -94,3 +94,60 @@ function myFunction(a) {
 }
 console.log(myFunction([1, -2, 2, -4]));
 */
+
+/*
+const button = document.querySelector('#wrapper button');
+
+const changeInput = () => {
+  const input = document.querySelector('#inputEl');
+  if (input) {
+    input.value = 'Hello World';
+  }
+};
+
+button.addEventListener('click', changeInput);
+
+document.querySelector('#wrapper input').setAttribute('id', 'inputEl');
+*/
+
+/*
+const listItems = [...document.querySelectorAll('#list li')].filter(
+  el => !el.id
+);
+const button = document.getElementById('button');
+
+const handleClick = () => {
+  listItems.forEach(item => {
+    const oldText = item.innerText;
+    return (item.innerText = oldText === 'ON' ? 'OFF' : 'ON');
+  });
+};
+if (listItems.length > 1) {
+  button.addEventListener('click', handleClick);
+}
+*/
+
+/*
+const element = document.querySelector('#element');
+
+const toggleColor = (isEntering) => {
+  element.style.background = isEntering ? 'orange' : 'black';
+};
+
+// type in your code here
+element.addEventListener('mouseenter',  toggleColor(true))
+element.addEventListener('mouseleave', toggleColor(false))
+*/
+
+//=== add todo item in last  ===//
+/*
+const button = document.getElementById('button');
+button.addEventListener('click', () => {
+  // type in your code here
+  const todoItem = document.getElementById('input').value;
+  todoItem &&
+    document
+      .getElementById('list')
+      .insertAdjacentHTML('beforeend', `<li>${todoItem}</li>`);
+});
+*/

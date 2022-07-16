@@ -9,6 +9,7 @@
       body {
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         background: linear-gradient(to top left, #28b487, #7dd56f);
       }
@@ -24,7 +25,16 @@
     </style>
     <script defer src="script.js"></script>
   </head>
-  <body>
+  <body id="wrapper">
     <h1>Object Oriented Programming (OOP) With JavaScript</h1>
+    <input type="text" id="input" placeholder="Filter..." />
+    <ul id="list">
+      <li>paris</li>
+      <li>berlin</li>
+      <li>new york</li>
+      <li>sao paulo</li>
+      <li>hong kong</li>
+      <li>vienna</li>
+    </ul>
   </body>
 </html>

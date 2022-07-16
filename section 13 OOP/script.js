@@ -100,7 +100,7 @@ DATA CAR 2: 'Mercedes' going at 95 km/h
 
 GOOD LUCK 😀
 */
-
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -128,7 +128,58 @@ bmw.brake();
 mercedes.brake();
 
 console.log(bmw, mercedes);
+*/
 
-/****************************************** 
-COMMENT:    
-******************************************/
+/* 
+  COMMENT: OOP with es6 classes: classes are just special kind of function
+*/
+/*
+//=== class expression  ===//
+// const PersonCL = class {};
+
+//=== class deceleration  ===//
+class PersonCL {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Methods will be added to .prototype property
+  calcAge() {
+    return console.log(2022 - this.birthYear);
+  }
+}
+
+const jessica = new PersonCL('Jessica', 1994);
+
+PersonCL.prototype.greet = function () {
+  console.log(`Hey ${this.firstName}`);
+};
+
+console.log(jessica);
+jessica.calcAge();
+jessica.greet();
+*/
+
+/* 
+  COMMENT: Getters and Setters
+*/
+
+const account = {
+  owner: 'Abrar',
+  movements: [230, 100, 30, 530],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set setLatest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+
+account.setLatest = 50;
+
+console.log(account);

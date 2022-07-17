@@ -382,10 +382,161 @@ function myFunction(arr) {
 console.log(myFunction([10, 100, 40])); // 50
 */
 
+/*
 // Write a function that takes an object with two properties as argument
 // It should return the value of the property with key 'prop-2'
 // Tipp: you might want to use the square brackets property accessor
 function myFunction(obj) {
-  return;
+  return obj["prop-2"];
 }
 console.log(myFunction({ one: 1, "prop-2": 2 })); // 2
+*/
+
+/*
+// Write a function that takes an object as argument
+// It should return an object with all original object properties
+// except for the property with key 'b'
+function myFunction(obj) {
+  // const newObj = obj;
+  // delete newObj?.b;
+  // return newObj;
+
+  const { b, ...rest } = obj;
+  console.log(b, rest);
+  return rest;
+}
+console.log(myFunction({ a: 1, b: 7, c: 3 })); // { a: 1, c: 3 }
+*/
+
+/*
+// Write a function that takes three elements of any type as arguments
+// Create a Set from those elements
+// Return the result
+function myFunction(a, b, c) {
+  return new Set([a, b, c]);
+}
+console.log(myFunction(1, "b", 3)); // new Set([1, 'b', 3])
+*/
+
+/*
+// Write a function that takes an array of numbers as argument
+// It should return an array with the numbers sorted in descending order
+function myFunction(arr) {
+  return arr.sort((a, b) => b - a);
+}
+console.log(myFunction([1, 3, 2])); // [3,2,1]
+*/
+
+/*
+// Write a function that takes a number (a) as argument
+// If a is a whole number (has no decimal place), return true
+// Otherwise, return false
+function myFunction(a) {
+  return Number.isInteger(a);
+}
+console.log(myFunction(4.3)); //
+*/
+
+/*
+// Write a function that takes two strings (a and b) as arguments
+// Return the number of times a occurs in b
+function myFunction(a, b) {
+  // let counter = 0;
+  // for (let i = 0; i < b.length; i++) {
+  //   b[i] == a && counter++;
+  // }
+  // return counter;
+
+  return b.split(a).length - 1;
+}
+console.log(
+  myFunction("m", "how many times does the character occur in this sentence?")
+);
+*/
+
+/*
+// Write a function that takes an array of strings as argument
+// Return the longest string
+function myFunction(arr) {
+  // let wordToReturn = "";
+  // for (let i = 0; i < arr.length; i++) {
+  //   if (arr[i].length > wordToReturn.length) {
+  //     wordToReturn = arr[i];
+  //   }
+  // }
+  // return wordToReturn;
+
+  return arr.reduce((a, b) => (a.length <= b.length ? b : a));
+}
+console.log(myFunction(["help", "me"]));
+*/
+
+/*
+// Write a function that takes a string as argument
+// As it is, the string has no meaning
+// Increment each letter to the next letter in the alphabet
+// Return the correct word
+function myFunction(str) {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+  let arr = [];
+  for (let i = 0; i < str.length; i++) {
+    arr.push(alphabet[alphabet.indexOf(str[i]) + 1]);
+  }
+  return arr.join("");
+}
+console.log(myFunction("bnchmf")); // 'coding'
+console.log(myFunction("bgddrd"));
+*/
+
+/*
+// Write a function that takes a number (a) as argument
+// Round a to the 2nd digit after the comma
+// Return the rounded number
+function myFunction(a) {
+  return +a.toFixed(2);
+}
+console.log(myFunction(2.12397));
+*/
+
+/*
+// Write a function that takes an array (a) and a number (b) as arguments
+// Sum up all array elements with a value greater than b
+// Return the sum
+function myFunction(a, b) {
+  return a.filter((n) => n > b).reduce((prev, curr) => prev + curr, 0);
+}
+console.log(myFunction([1, 2, 3, 4, 5, 6, 7], 2));
+*/
+
+/*
+// Write a function that takes arguments an arbitrary number of arrays
+// It should return an array containing the values of all arrays
+function myFunction(...arrays) {
+  return [...arrays].flat(Infinity);
+}
+console.log(myFunction([1, 2, 3], [4, 5, 6]));
+*/
+
+/*
+// Write a function that takes two arrays (a and b) as arguments
+// Create an object that has properties with keys 'a' and corresponding values 'b'
+// Return the object
+function myFunction(a, b) {
+  const obj = {};
+  for (let i = 0; i < a.length; i++) {
+    obj[a[i]] = b[i];
+  }
+  return obj;
+}
+console.log(myFunction(["a", "b", "c"], [1, 2, 3]));
+*/
+
+/*
+// Write a function that takes a number (a) as argument
+// Split a into its individual digits and return them in an array
+// Tipp: you might want to change the type of the number for the splitting
+function myFunction(a) {
+  return String(a).split("").map((n) => +n);
+}
+console.log(myFunction(10));
+*/

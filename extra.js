@@ -151,3 +151,186 @@ button.addEventListener('click', () => {
       .insertAdjacentHTML('beforeend', `<li>${todoItem}</li>`);
 });
 */
+
+//=== drag and drop  ===//
+/*
+ const dragItem = document.querySelector('#dragItem');
+  const dropArea = document.querySelector('#dropArea');
+  
+  const handleDragOver = (event) => event.preventDefault();
+  dropArea.addEventListener('dragover', handleDragOver);
+  
+  const handleDrop = () => {
+    dropArea.append(dragItem);
+  };
+  
+  dropArea.addEventListener("drop",handleDrop);
+  */
+
+//=== wrap an element with a newly created parent element  ===//
+/*
+  
+  const button = document.querySelector('#button');
+  
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('id', 'wrapper');
+  button.parentNode.append(wrapper);
+  wrapper.append(button);
+  
+  const btn = document.querySelector('#wrapper btn');
+  
+  if(btn) {
+    const handleClick = () => {
+      btn.innerText = 'Thank you! ❤️'
+    }
+  
+    btn.addEventListener('click', handleClick)
+  }
+  */
+
+//=== checkbox checked by button click  ===//
+/*
+const button = document.getElementById('button');
+button.addEventListener('click', () => {
+  const check = (document.getElementById('checkbox').checked = true);
+});
+*/
+
+/*
+// Write a function that takes two strings (a and b) as arguments
+// If a contains b, append b to the beginning of a
+// If not, append it to the end
+// Return the concatenation
+function myFunction(a, b) {
+  return a.includes(b) ? b + a : a + b;
+}
+
+console.log(myFunction('cheese', 'cake'));
+console.log(myFunction('lips', 's'));
+*/
+
+/*
+// Write a function that takes a string (a) as argument
+// Remove the first 3 characters of a
+// Return the result
+function myFunction(a) {
+  return a.slice(3);
+}
+console.log(myFunction('abcdefg'));
+*/
+
+/*
+// Write a function that takes an array (a) as argument
+// Extract the last 3 elements of 'a'
+// Return the resulting array
+function myFunction(a) {
+  return a.slice(-3);
+}
+console.log(myFunction([1, 2, 3, 4]));
+*/
+
+/*
+// Write a function that takes an object (a) as argument
+// Return an array with all object keys
+function myFunction(a) {
+  return Object.keys(a);
+}
+
+console.log(myFunction({ a: 1, b: 2, c: 3 }));
+*/
+
+/*
+// Write a function that takes two numbers (a and b) as arguments
+// If a is smaller than b, divide a by b
+// Otherwise, multiply both numbers
+// Return the resulting value
+function myFunction(a, b) {
+  return a < b ? a / b : a * b;
+}
+console.log(myFunction(10, 100));
+*/
+
+/*
+// Write a function that takes two date instances (a and b) as arguments
+// It should return true if a is earlier than b
+// It should return false otherwise
+function myFunction(a, b) {
+  return a.getTime() < b.getTime();
+}
+console.log(
+  myFunction(new Date("2000/01/01 08:00:00"), new Date("2000/01/01 08:45:00"))
+);
+*/
+
+/*
+// Write a function that takes an array (a) and a value (b) as argument
+// The function should remove all elements equal to 'b' from the array
+// Return the filtered array
+function myFunction(a, b) {
+  return a.filter((i) => i !== b);
+}
+
+console.log(myFunction([1, 2, 3], 2));
+*/
+
+/*
+// Write a function that takes a Set as argument
+// Convert the Set to an Array
+// Return the Array
+function myFunction(set) {
+  return [...set];
+}
+console.log(myFunction(new Set([1, 2, 3])));
+*/
+
+/*
+// Write a function that takes an array of numbers as argument
+// It should return the sum of the numbers
+function myFunction(a) {
+  return a.reduce((prev, cur) => prev + cur, 0);
+}
+console.log(myFunction([10, 100, 40])); // 150
+*/
+
+/*
+// Write a function that takes an array (a) and a number (n) as arguments
+// It should return the last n elements of a
+function myFunction(a, n) {
+  return a.slice(-n);
+}
+console.log(myFunction([1, 2, 3, 4, 5], 2));
+*/
+
+/*
+// Write a function that takes 6 values (a,b,c,d,e,f) as arguments
+// Sum a and b
+// Then substract by c
+// Then multiply by d and divide by e
+// Finally raise to the power of f and return the result
+// Tipp: mind the order
+function myFunction(a, b, c, d, e, f) {
+  //=== long way  ===//
+  // let one = a + b;
+  // let two = one - c;
+  // let three = two * d;
+  // let four = three / e;
+  // return four ** f;
+
+  //=== short way  ===//
+  return (((a + b - c) * d) / e) ** f;
+}
+
+console.log(myFunction(6, 5, 4, 3, 2, 1));
+console.log(myFunction(6, 2, 1, 4, 2, 3));
+*/
+
+/*
+// Write a function that takes a Set and a value as argument
+// If existing in the Set, remove the value from the Set
+// Return the result
+function myFunction(set, val) {
+  set.has(val) && set.delete(val);
+  return set;
+}
+console.log(myFunction(new Set([1, 2, 3]), 1)); // new Set([2, 3])
+*/

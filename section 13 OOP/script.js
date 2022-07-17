@@ -183,3 +183,7 @@ console.log(account.latest);
 account.setLatest = 50;
 
 console.log(account);
+
+/****************************************** 
+COMMENT:    
+******************************************/

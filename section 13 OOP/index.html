@@ -22,19 +22,18 @@
         text-align: center;
         color: white;
       }
+      ul li::marker {
+        color: red !important;
+        font-size: 100px;
+      }
     </style>
+    <script defer src="../extra.js"></script>
     <script defer src="script.js"></script>
   </head>
-  <body id="wrapper">
-    <h1>Object Oriented Programming (OOP) With JavaScript</h1>
-    <input type="text" id="input" placeholder="Filter..." />
-    <ul id="list">
-      <li>paris</li>
-      <li>berlin</li>
-      <li>new york</li>
-      <li>sao paulo</li>
-      <li>hong kong</li>
-      <li>vienna</li>
-    </ul>
+  <body>
+    <!-- <h1>Object Oriented Programming (OOP) With JavaScript</h1> -->
+    <input id="checkbox" disabled />
+    <label for="checkbox">checkbox</label>
+    <button type="button" id="button">Verify Code</button>
   </body>
 </html>

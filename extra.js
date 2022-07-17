@@ -334,3 +334,58 @@ function myFunction(set, val) {
 }
 console.log(myFunction(new Set([1, 2, 3]), 1)); // new Set([2, 3])
 */
+
+/*
+// Write a function that takes an object (a) as argument
+// Return the sum of all object values
+function myFunction(a) {
+  return Object.values(a).reduce((prev, cur) => prev + cur, 0);
+}
+console.log(myFunction({ a: 1, b: 2, c: 3 }));
+*/
+
+/*
+// Write a function that takes two numbers (a and b) as argument
+// Return b percent of a
+function myFunction(a, b) {
+  return (a / 100) * b;
+}
+console.log(myFunction(100, 50));
+*/
+
+/*
+// Write a function that takes two strings (a and b) as arguments
+// Create an object that has a property with key 'a' and a value of 'b'
+// Return the object
+function myFunction(a, b) {
+  return { [a]: b };
+}
+console.log(myFunction("a", "b")); // {a:'b'}
+*/
+
+/*
+// Write a function that takes a number as argument
+// If the number is even, return true
+// Otherwise, return false
+function myFunction(a) {
+  return a % 2 === 0;
+}
+console.log(myFunction(11));
+*/
+
+/*
+// Write a function that takes an array of numbers as argument
+// It should return the average of the numbers
+function myFunction(arr) {
+  return arr.reduce((prev, cur) => prev + cur, 0) / arr.length;
+}
+console.log(myFunction([10, 100, 40])); // 50
+*/
+
+// Write a function that takes an object with two properties as argument
+// It should return the value of the property with key 'prop-2'
+// Tipp: you might want to use the square brackets property accessor
+function myFunction(obj) {
+  return;
+}
+console.log(myFunction({ one: 1, "prop-2": 2 })); // 2

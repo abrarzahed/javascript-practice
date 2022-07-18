@@ -540,3 +540,114 @@ function myFunction(a) {
 }
 console.log(myFunction(10));
 */
+
+/*// Write a function that takes a Set and an array as arguments
+// If not already existing, add each element in the array to the Set
+// Return the modified Set
+function myFunction(set, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    !set.has(arr[i]) && set.add(arr[i]);
+  }
+  return set;
+}
+console.log(myFunction(new Set([1, 2, 3]), [4, 5, 6]));
+*/
+
+/*
+// Write a function that takes two Sets as arguments
+// Create the union of the two sets
+// Return the result
+// Tipp: try not to switch to Arrays, this would slow down your code
+function myFunction(a, b) {
+  b.forEach(e => a.add(e));
+  return a;
+}
+
+console.log(myFunction(new Set('123'), new Set('234')));
+*/
+
+/*
+// Write a function that takes two sets (a and b) as arguments
+// Get the intersection of the sets
+// In other words, return a set containing all elements that are both in a as well as b
+function myFunction(a, b) {
+  const aArr = [...a];
+  const bArr = [...b];
+  const st = new Set();
+  for (let i = 0; i < aArr.length; i++) {
+    bArr.includes(aArr[i]) && st.add(aArr[i]);
+    console.log(bArr.includes(aArr[i]));
+  }
+  return st;
+}
+console.log(myFunction(new Set([1, 2, 3]), new Set([4, 5, 6])));
+console.log(myFunction(new Set('12345'), new Set([...'45678'])));
+*/
+
+/*
+// Write a function that takes an array of objects and a string as arguments
+// Add a property with key 'continent' and value equal to the string to each of the objects
+// Return the new array of objects
+// Tipp: try not to mutate the original array
+function myFunction(arr, str) {
+  return arr.map((a) => ({ ...a, continent: str }));
+}
+console.log(
+  myFunction(
+    [
+      { city: "Tokyo", country: "Japan" },
+      { city: "Bangkok", country: "Thailand" },
+    ],
+    "Asia"
+  )
+);
+*/
+
+/*
+// Write a function that takes an object as argument
+// Some of the property values contain empty strings
+// Replace empty strings and strings that contain only whitespace with null values
+// Return the resulting object
+function myFunction(obj) {
+  for (const key in obj) {
+    if (obj[key] == "" || obj[key] == " ") {
+      obj[key] = null;
+    }
+  }
+  return obj;
+}
+console.log(myFunction({ a: "a", b: "b", c: "" })); // { a: 'a', b: 'b', c: null }
+*/
+
+/*
+// Write a function that takes an array as argument
+// It should return true if all elements in the array are equal
+// It should return false otherwise
+function myFunction(arr) {
+  // const first = arr[0];
+  // const testArr = [];
+  // arr.forEach((el) => {
+  //   if (el === first) {
+  //     testArr.push(el);
+  //   }
+  // });
+  // return testArr.length === arr.length;
+  return new Set(arr).size === 1;
+}
+console.log(myFunction([true, true, true, true]));
+console.log(myFunction([1, 1, 1, 2]));
+*/
+
+/*
+// Write a function that takes an array with arbitrary elements and a number as arguments
+// Return a new array, the first element should be either the given number itself
+// or zero if the number is smaller than 6
+// The other elements should be the elements of the original array
+// Try not to mutate the original array
+function myFunction(arr, num) {
+  num < 6 ? arr.unshift(0) : arr.unshift(num);
+  return arr;
+}
+console.log(myFunction([1, 2, 3], 6));
+console.log(myFunction(["a", "b"], 2));
+*/

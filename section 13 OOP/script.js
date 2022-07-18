@@ -343,7 +343,7 @@ DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 
 GOOD LUCK 😀
 */
-
+/*
 //=== Create main class  ===//
 const Car = function (make, speed) {
   this.make = make;
@@ -387,3 +387,8 @@ tesla.chargeBattery(90);
 console.log(tesla);
 tesla.brake();
 tesla.accelerate();
+*/
+
+/****************************************** 
+COMMENT:    
+******************************************/

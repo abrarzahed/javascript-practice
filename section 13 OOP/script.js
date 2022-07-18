@@ -144,7 +144,12 @@ class PersonCL {
     this.birthYear = birthYear;
   }
 
-  // Methods will be added to .prototype property
+  // Static method: wont be added to prototype
+  static call() {
+    console.log('Hey... come here');
+  }
+
+  // Instance Methods: will be added to .prototype property
   calcAge() {
     return console.log(2022 - this.birthYear);
   }
@@ -159,12 +164,19 @@ PersonCL.prototype.greet = function () {
 console.log(jessica);
 jessica.calcAge();
 jessica.greet();
+
+PersonCL.hey = function () {
+  console.log(this);
+  console.log('Hey There ✋');
+};
+PersonCL.hey();
+PersonCL.call();
 */
 
 /* 
   COMMENT: Getters and Setters
 */
-
+/*
 const account = {
   owner: 'Abrar',
   movements: [230, 100, 30, 530],
@@ -183,7 +195,89 @@ console.log(account.latest);
 account.setLatest = 50;
 
 console.log(account);
+*/
+
+/* 
+  COMMENT: Object.create
+*/
+/*
+const PersonProto = {
+  calcAge() {
+    console.log(2022 - this.birthYear);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 1889;
+
+steven.calcAge();
+
+console.log(steven.__proto__);
+
+const sarah = Object.create(PersonProto);
+
+sarah.init('Sarah', 1998);
+sarah.calcAge();
+*/
 
 /****************************************** 
-COMMENT:    
+COMMENT: Coding Challenge #2   
 ******************************************/
+
+/* 
+1. Re-create challenge 1, but this time using an ES6 class;
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide by 1.6);
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but converts it to km/h before storing the value, by multiplying the input by 1.6);
+4. Create a new car and experiment with the accelerate and brake methods, and with the getter and setter.
+
+DATA CAR 1: 'Ford' going at 120 km/h
+
+GOOD LUCK 😀
+*/
+class Car {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  //=== instance methods  ===//
+  accelerate() {
+    this.speed += 10;
+    console.log(this.speed);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(this.speed);
+  }
+
+  // getters and setters
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(value) {
+    this.speed = value * 1.6;
+  }
+}
+
+//=== create two car object with constructor function Car  ===//
+
+const ford = new Car('Ford', 120);
+console.log(ford.speedUS, ford.speed);
+
+ford.accelerate();
+ford.accelerate();
+
+ford.brake();
+ford.brake();
+
+ford.speedUS = 100;
+
+console.log(ford);

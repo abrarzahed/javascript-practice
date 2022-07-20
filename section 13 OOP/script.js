@@ -389,6 +389,63 @@ tesla.brake();
 tesla.accelerate();
 */
 
-/****************************************** 
-COMMENT:    
-******************************************/
+/* 
+  COMMENT: Inheritance between "classes": ES6 classes.
+*/
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  //=== Instance Methods  ===//
+  calcAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  //=== getters  ===//
+  get age() {
+    return new Date().getFullYear() - this.birthYear;
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  //=== setters  ===//
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else console.log(`${name} is not full name`);
+  }
+
+  //=== static  ===//
+  static hey() {
+    console.log('Hey there');
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    //=== super() always needs to be call first  ===//
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  //=== Instance Methods  ===//
+  introduce() {
+    console.log(`My name is ${this.fullName} and i study ${this.course}`);
+  }
+
+  //=== own instance method that will get priority over parents instance method. Because it will come first in the prototype chain.  ===//
+  calcAge(year) {
+    console.log(`I am ${year} years young`);
+  }
+}
+
+const jessica = new StudentCl('Jessica Khan', 2000, 'CSC');
+jessica.introduce();
+jessica.calcAge(20);

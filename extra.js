@@ -776,6 +776,7 @@ console.log(myFunction([1, 2, 3], [3, 4, 5])); //[ 1, 2, 3, 4, 5 ]
 console.log(myFunction([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10, 5, 22, 41,  42, 333]
 */
 
+/*
 // Write a function that takes an array of strings as argument
 // Group those strings by their first letter
 // Return an object that contains properties with keys representing first letters
@@ -783,5 +784,34 @@ console.log(myFunction([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10,
 // For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to
 // { a: ['Alf', 'Alice'], b: ['Ben']}
 function myFunction(arr) {
-  return;
+  let resultObj = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let currentWord = arr[i];
+    let firstChar = currentWord[0].toLowerCase();
+    let innerArr = [];
+    if (resultObj[firstChar] === undefined) {
+      innerArr.push(currentWord);
+      resultObj[firstChar] = innerArr;
+    } else {
+      resultObj[firstChar].push(currentWord);
+    }
+  }
+  return resultObj;
 }
+
+console.log(myFunction(["Alf", "Alice", "Ben"])); // { a: ['Alf', 'Alice'], b: ['Ben']}
+*/
+
+// Write a function that takes an array (a) and a value (n) as arguments
+// Save every nth element in a new array
+// Return the new array
+function myFunction(a, n) {
+  let array = [];
+
+  for (let i = n; i < a.length; i += n) {
+    array.push(a[i - 1]);
+  }
+  return array;
+}
+console.log(myFunction([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));

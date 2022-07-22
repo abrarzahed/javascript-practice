@@ -784,25 +784,25 @@ console.log(myFunction([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10,
 // For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to
 // { a: ['Alf', 'Alice'], b: ['Ben']}
 function myFunction(arr) {
-  let resultObj = {};
-
+  const obj = {};
   for (let i = 0; i < arr.length; i++) {
     let currentWord = arr[i];
-    let firstChar = currentWord[0].toLowerCase();
-    let innerArr = [];
-    if (resultObj[firstChar] === undefined) {
-      innerArr.push(currentWord);
-      resultObj[firstChar] = innerArr;
+    let firstCar = currentWord[0].toLowerCase();
+    const innerArray = [];
+    if (obj[firstCar] === undefined) {
+      innerArray.push(currentWord);
+      obj[firstCar] = innerArray;
     } else {
-      resultObj[firstChar].push(currentWord);
+      obj[firstCar].push(currentWord);
     }
   }
-  return resultObj;
+  return obj;
 }
 
 console.log(myFunction(["Alf", "Alice", "Ben"])); // { a: ['Alf', 'Alice'], b: ['Ben']}
 */
 
+/*
 // Write a function that takes an array (a) and a value (n) as arguments
 // Save every nth element in a new array
 // Return the new array
@@ -815,3 +815,153 @@ function myFunction(a, n) {
   return array;
 }
 console.log(myFunction([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3));
+*/
+
+/*
+// Write a function that takes an array of objects as argument
+// Sort the array by property b in ascending order
+// Return the sorted array
+function myFunction(arr) {
+  const newArr = [];
+  const [one, two] = [...arr];
+  const oneVal = Object.values(one).reduce((prev, cur) => prev + cur, 0);
+  const twoVal = Object.values(two).reduce((prev, cur) => prev + cur, 0);
+  console.log(oneVal, twoVal);
+  if (oneVal > twoVal) {
+    newArr[0] = two;
+    newArr[1] = one;
+  } else {
+    newArr[1] = two;
+    newArr[0] = one;
+  }
+  return newArr;
+
+  const sort = (x, y) => x.b - y.b;
+  return arr.sort(sort);
+}
+console.log(
+  myFunction([
+    { a: 1, b: 7 },
+    { a: 2, b: 1 },
+  ])
+);
+
+// [
+//   { a: 5, b: 4 },
+//   { a: 2, b: 10 },
+// ];
+*/
+
+/*
+// Write a function that takes a number (a) as argument
+// Split a into its individual digits and return them in an array
+// Tipp: you might want to change the type of the number for the splitting
+function myFunction(a) {
+  return String(a)
+    .split("")
+    .map((n) => +n);
+}
+console.log(myFunction(931)); //[9,3,1]
+*/
+
+/*
+// This challenge is a little bit more complex
+// Write a function that takes a number (a) as argument
+// If a is prime, return a
+// If not, return the next higher prime number
+function myFunction(a) {
+  for (let i = 2; i < a; i++) {
+    if (a % i === 0) {
+      return myFunction(a + 1);
+    }
+  }
+  return a;
+}
+console.log(myFunction(38));
+*/
+
+/*
+// Write a function that takes two numbers, say x and y, as arguments
+// Check if x is divisible by y
+// If yes, return x
+// If not, return the next higher natural number that is divisible by y
+function myFunction(x, y) {
+  while (x % y !== 0) x++;
+  return x;
+}
+console.log(myFunction(7, 3));
+*/
+
+/*
+// It seems like something happened to these strings
+// Can you figure out how to clear up the chaos?
+// Write a function that joins these strings together such that they form the following words:
+// 'Javascript', 'Countryside', and 'Downtown'
+// You might want to apply basic JS string methods such as replace(), split(), slice() etc
+function myFunction(a, b) {
+  b = b.split("").reverse().join("");
+  a.toUpperCase();
+  return (
+    a[0].toUpperCase() +
+    a
+      .slice(1)
+
+      .concat(b)
+      .replace(/[^a-zA-Z ]/g, "")
+  );
+}
+console.log(myFunction("c%ountry", "edis"));
+console.log(myFunction("down", "nw%ot"));
+*/
+
+/*
+const list = document.getElementById("list");
+list.addEventListener("mouseover", function (e) {
+  if (e.target.tagName === "LI") {
+    e.target.style.visibility = "hidden";
+  }
+});
+*/
+
+/*
+const itemsList = document.querySelectorAll("#list li");
+
+function filterList() {
+  var valueInput = document.querySelector("#input").value.toLowerCase().trim();
+
+  for (var i = 0; i < itemsList.length; i++) {
+    var item = itemsList[i];
+    var valueLi = item.innerText.toLowerCase().trim();
+
+    if (valueLi.includes(valueInput)) {
+      item.style.display = "";
+    } else {
+      item.style.display = "none";
+    }
+  }
+}
+input.addEventListener("input", filterList);
+
+// const input = document.getElementById('input');
+//   input.addEventListener('input', () => {
+//     const listItems = document.querySelectorAll('#list li');
+//     listItems.forEach(li => {
+//       if(li.innerText.includes(input.value)) return li.hidden = false;
+//       return li.hidden = true;
+//     })
+//   });
+*/
+
+// Write a function that takes two strings (a and b) as arguments
+// Beginning at the end of 'a', insert 'b' after every 3rd character of 'a'
+// Return the resulting string
+function myFunction(a, b) {
+  let result = [];
+  let rest = a;
+  while (rest.length) {
+    result.push(rest.slice(-3));
+    rest = rest.slice(0, -3);
+  }
+  return result.reverse().join(b);
+}
+console.log(myFunction("1234567", ".")); // '1.234.567'

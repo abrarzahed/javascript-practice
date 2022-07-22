@@ -668,3 +668,120 @@ function myFunction(x, y) {
 }
 console.log(myFunction({ a: 1, b: 2 }, { c: 3, b: 4, e: 5 }));
 */
+
+/*
+// Write a function that takes an object (a) and a number (b) as arguments
+// Multiply all values of 'a' by 'b'
+// Return the resulting object
+function myFunction(a, b) {
+  for (const i in a) {
+    a[i] = a[i] * b;
+  }
+  return a;
+}
+console.log(myFunction({ a: 1, b: 2, c: 3 }, 3));
+*/
+
+/*
+// Write a function that takes an array of numbers as argument
+// Convert the array to an object
+// It should have a key for each unique value of the array
+// The corresponding object value should be the number of times the key occurs within the array
+function myFunction(a) {
+  const obj = {};
+  a.forEach((element) => {
+    if (obj[element] > 0) obj[element]++;
+    else obj[element] = 1;
+  });
+  return obj;
+
+  return a.reduce((acc, cur) => {
+    return { ...acc, [cur]: (acc[cur] || 0) + 1 };
+  }, {});
+}
+console.log(myFunction([1, 2, 2, 3])); // {1:1,2:2,3:1}
+*/
+
+/*
+// Write a function that takes an object as argument containing properties with personal information
+// Extract firstName, lastName, size, and weight if available
+// If size or weight is given transform the value to a string
+// Attach the unit cm to the size
+// Attach the unit kg to the weight
+// Return a new object with all available properties that we are interested in
+function myFunction(obj) {
+  const obj2 = {
+    fn: obj?.fn,
+    ln: obj?.ln,
+  };
+  if (obj?.size) obj2.size = String(obj.size + "cm");
+  if (obj?.weight) obj2.weight = String(obj.weight + "kg");
+  return obj2;
+}
+
+console.log(
+  myFunction({ fn: "Lisa", ln: "Müller", age: 17, size: 175, weight: 67 })
+);
+console.log(
+  myFunction({
+    fn: "Martin",
+    ln: "Harper",
+    age: 26,
+    email: "martin.harper@test.de",
+    weight: 102,
+  })
+);
+//{fn: 'Lisa', ln: 'Müller', size: '175cm', weight: '67kg'}
+*/
+
+/*
+// Write a function that takes an object as argument
+// Somehow, the properties and keys of the object got mixed up
+// Swap the Javascript object's key with its values and return the resulting object
+function myFunction(obj) {
+  const obj2 = {};
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+  for (let i = 0; i < values.length; i++) {
+    obj2[values[i]] = keys[i];
+  }
+  return obj2;
+}
+console.log(myFunction({ z: "a", y: "b", x: "c", w: "d" })); // {a:'z',b:'y',c:'x',d:'w'}
+*/
+
+/*
+// Write a function that takes two numbers (min and max) as arguments
+// Return an array of numbers in the range min to max
+function myFunction(min, max) {
+  const arr = [];
+  for (let i = min; i <= max; i++) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+console.log(myFunction(2, 10)); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+*/
+
+/*
+// Write a function that takes two arrays as arguments
+// Merge both arrays and remove duplicate values
+// Sort the merge result in ascending order
+// Return the resulting array
+function myFunction(a, b) {
+  return [...new Set(a.concat(b).sort((a, b) => a - b))];
+}
+console.log(myFunction([1, 2, 3], [3, 4, 5])); //[ 1, 2, 3, 4, 5 ]
+console.log(myFunction([-10, 22, 333, 42], [-11, 5, 22, 41, 42])); //[ -11, -10, 5, 22, 41,  42, 333]
+*/
+
+// Write a function that takes an array of strings as argument
+// Group those strings by their first letter
+// Return an object that contains properties with keys representing first letters
+// The values should be arrays of strings containing only the corresponding strings
+// For example, the array ['Alf', 'Alice', 'Ben'] should be transformed to
+// { a: ['Alf', 'Alice'], b: ['Ben']}
+function myFunction(arr) {
+  return;
+}

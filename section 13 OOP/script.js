@@ -486,6 +486,7 @@ console.log(jay);
 /* 
   COMMENT: Another example of class
 */
+/*
 class Account {
   //=== 1) Public fields (instances)  ===//
   locale = navigator.language;
@@ -549,3 +550,4 @@ console.log(acc1.getMovements());
 //=== Chaining   ===//
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acc1);
+*/

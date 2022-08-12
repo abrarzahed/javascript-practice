@@ -36,13 +36,13 @@ class App {
   }
 
   _loadMap(position) {
-    //=== user coordinates  ===//
+    //=== get user coordinates  ===//
     const { latitude } = position.coords;
     const { longitude } = position.coords;
 
     const coords = [latitude, longitude];
 
-    //=== setting user coordinates to map  ===//
+    //=== set user coordinates to map  ===//
     this.#map = L.map('map').setView(coords, 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -72,8 +72,10 @@ class App {
     inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
 
     //=== display marker  ===//
+    //  get latitude and longitude of clicked area
     const { lat, lng } = this.#mapEvent.latlng;
 
+    //  set latitude and longitude of clicked area
     L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup(

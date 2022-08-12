@@ -3,17 +3,6 @@
 // prettier-ignore
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-/****************************************** 
-COMMENT: Dom Selection   
-******************************************/
-const form = document.querySelector('.form');
-const containerWorkouts = document.querySelector('.workouts');
-const inputType = document.querySelector('.form__input--type');
-const inputDistance = document.querySelector('.form__input--distance');
-const inputDuration = document.querySelector('.form__input--duration');
-const inputCadence = document.querySelector('.form__input--cadence');
-const inputElevation = document.querySelector('.form__input--elevation');
-
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
@@ -60,6 +49,14 @@ console.log(run1, cycling1);
 /****************************************** 
 COMMENT: Application architecture   
 ******************************************/
+//=== Dom Selection   ===//
+const form = document.querySelector('.form');
+const containerWorkouts = document.querySelector('.workouts');
+const inputType = document.querySelector('.form__input--type');
+const inputDistance = document.querySelector('.form__input--distance');
+const inputDuration = document.querySelector('.form__input--duration');
+const inputCadence = document.querySelector('.form__input--cadence');
+const inputElevation = document.querySelector('.form__input--elevation');
 class App {
   #map;
   #mapEvent;
@@ -113,15 +110,48 @@ class App {
 
   _newWorkout(e) {
     e.preventDefault();
-    //=== clear input fields  ===//
-    // prettier-ignore
-    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
 
-    //=== display marker  ===//
-    //  get latitude and longitude of clicked area
+    const checkFormData = (...inputs) =>
+      inputs.every(input => Number.isFinite(input));
+
+    const checkIfAllPositive = (...inputs) => inputs.every(input => input > 0);
+
+    // Get data from form
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+
+    // if workout is running, create running object
+
+    if (type === 'running') {
+      const cadence = +inputCadence.value;
+
+      // Check if data is valid
+      if (
+        !checkFormData(distance, duration, cadence) ||
+        !checkIfAllPositive(distance, duration, cadence)
+      ) {
+        return alert('Input have to be positive numbers!');
+      }
+    }
+
+    // if workout is cycling. create cycling object
+    if (type === 'cycling') {
+      const elevation = +inputElevation.value;
+
+      // Check if data is valid
+      if (
+        !checkFormData(distance, duration, elevation) ||
+        !checkIfAllPositive(distance, duration)
+      ) {
+        return alert('Input have to be positive numbers!');
+      }
+    }
+
+    // Add new object to workout array
+
+    // Render workout on map as a marker
     const { lat, lng } = this.#mapEvent.latlng;
-
-    //  set latitude and longitude of clicked area
     L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup(
@@ -135,6 +165,17 @@ class App {
       )
       .setPopupContent('Workout')
       .openPopup();
+
+    //Render workout on the list in sidebar
+
+    // Hide the form and clear input fields//
+    // prettier-ignore
+    inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
+
+    //=== display marker  ===//
+    //  get latitude and longitude of clicked area
+
+    //  set latitude and longitude of clicked area
   }
 }
 

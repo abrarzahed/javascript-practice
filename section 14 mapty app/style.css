@@ -218,3 +218,31 @@ a:visited {
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-basis: 100%;
+    padding: 2rem;
+  }
+  .workouts {
+    height: auto;
+  }
+  .form {
+    height: auto;
+  }
+  .form__row {
+    display: grid;
+  }
+  .workout__details {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #map {
+    flex: 1;
+    min-height: 300px;
+  }
+}

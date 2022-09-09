@@ -213,6 +213,7 @@ TEST COORDINATES 2: -33.933, 18.474
 GOOD LUCK 😀
 */
 
+/*
 const getJSON = function (url, errorMsg = 'Something went wrong') {
   return fetch(url).then(res => {
     if (!res.ok) {
@@ -228,9 +229,7 @@ const whereAmI = function (lat, long) {
     `https://geocode.xyz/${lat},${long}?geoit=json&auth=416397938045150956019x31932`
   )
     .then(res => {
-      console.log(res);
       if (res.status == 403) {
-        console.log('Timing issue');
         throw new Error('Timing issue');
       }
       return res.json();
@@ -255,10 +254,239 @@ const whereAmI = function (lat, long) {
         });
     })
     .catch(err => {
-      console.log(error.message);
+      console.log(err.message);
     })
     .finally(() => {
       countriesContainer.style.opacity = 1;
     });
 };
 whereAmI(-33.933, 18.474);
+*/
+
+/****************************************** 
+COMMENT:  callback queue and microtask queue test
+******************************************/
+/*
+console.log('Test Start');
+setTimeout(() => console.log(`0 sec timer`), 0);
+Promise.resolve('Resolved promise 1').then(res => console.log(res));
+console.log('Test end');
+*/
+
+/****************************************** 
+COMMENT: Promise   
+******************************************/
+/*
+const lotteryPromise = new Promise((resolve, reject) => {
+  console.log('Lottery draw is happening 🔮');
+  setTimeout(() => {
+    if (Math.random() >= 0.5) {
+      resolve('You Won The Lottery 💰');
+    } else {
+      reject(new Error('You loss your money 👎'));
+    }
+  }, 3000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
+
+//=== promisify setTimeout ===//
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(5)
+  .then(() => {
+    console.log('I waited 5 seconds');
+    return wait(2);
+  })
+  .then(() => {
+    console.log('I waited 3 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited 1 second');
+  });
+*/
+
+/****************************************** 
+COMMENT: get country by using navigator geolocation coordinates   
+******************************************/
+/*
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(res => {
+    if (!res.ok) {
+      throw new Error(`${errorMsg} ${res.status}`);
+    }
+
+    return res.json();
+  });
+};
+
+const whereAmI = function (lat, long) {
+  fetch(
+    `https://geocode.xyz/${lat},${long}?geoit=json&auth=416397938045150956019x31932`
+  )
+    .then(res => {
+      if (res.status == 403) {
+        throw new Error('Timing issue');
+      }
+      return res.json();
+    })
+    .then(data => {
+      return getJSON(
+        `https://restcountries.com/v2/name/${data.country}`,
+        'Country not found'
+      )
+        .then(data => {
+          const [dataObj] = data;
+          renderCountryHTML(dataObj);
+
+          // neighbor
+          const [neighbor] = dataObj.borders;
+          if (!neighbor) throw new Error('No neighbor found');
+
+          return getJSON(`https://restcountries.com/v2/alpha/${neighbor}`);
+        })
+        .then(data => {
+          renderCountryHTML(data, 'neighbour');
+        });
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+navigator.geolocation.getCurrentPosition(
+  position => {
+    const { latitude, longitude } = position.coords;
+    whereAmI(latitude, longitude);
+  },
+  error => {
+    console.log(error);
+  }
+);
+*/
+
+/****************************************** 
+COMMENT: Coding Challenge   
+******************************************/
+/* 
+Build the image loading functionality that I just showed you on the screen.
+
+Tasks are not super-descriptive this time, so that you can figure out some stuff on your own. Pretend you're working on your own 😉
+
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+If this part is too tricky for you, just watch the first part of the solution.
+
+PART 2
+2. Consume the promise using .then and also add an error handler;
+3. After the image has loaded, pause execution for 2 seconds using the wait function we created earlier;
+4. After the 2 seconds have passed, hide the current image (set display to 'none'), and load a second image (HINT: Use the image element returned by the createImage promise to hide the current image. You will need a global variable for that 😉);
+5. After the second image has loaded, pause execution for 2 seconds again;
+6. After the 2 seconds have passed, hide the current image.
+
+TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
+
+GOOD LUCK 😀
+*/
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imagePath) {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement('img');
+    img.src = imagePath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(this);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('img not found'));
+    });
+  });
+};
+
+let currentImg;
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    console.log('Image 1 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 2 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));
+
+/*
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const imgContainer = document.querySelector('.images');
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+
+let currentImg;
+
+createImage('img/img-1.jpg')
+  .then(img => {
+    currentImg = img;
+    console.log('Image 1 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('img/img-2.jpg');
+  })
+  .then(img => {
+    currentImg = img;
+    console.log('Image 2 loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));
+*/

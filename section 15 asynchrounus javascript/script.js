@@ -19,6 +19,7 @@ const renderCountryHTML = function (data, className = '') {
 </article>
 `;
   countriesContainer.insertAdjacentHTML('beforeend', cardHTML);
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (message) {
@@ -397,7 +398,7 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 
 GOOD LUCK 😀
 */
-
+/*
 const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
@@ -442,6 +443,7 @@ createImage('img/img-1.jpg')
     currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
+/*
 
 /*
 const wait = function (seconds) {
@@ -489,4 +491,138 @@ createImage('img/img-1.jpg')
     currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
+*/
+
+/****************************************** 
+COMMENT: Async Await   
+******************************************/
+/*
+const whereAmI = async function (country) {
+  const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+  const data = await res.json();
+  console.log(data);
+  renderCountryHTML(data[0]);
+};
+
+whereAmI('usa');
+console.log('First');
+*/
+
+/****************************************** 
+COMMENT: Promise.race    
+******************************************/
+/*
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(res => {
+    if (!res.ok) {
+      throw new Error(`${errorMsg} ${res.status}`);
+    }
+
+    return res.json();
+  });
+};
+
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v2/name/italy`),
+    getJSON(`https://restcountries.com/v2/name/egypt`),
+    getJSON(`https://restcountries.com/v2/name/mexico`),
+  ]);
+  console.log(res);
+})();
+*/
+
+/* 
+  COMMENT: TRICK:- Prevent infinite/very long fetching action or stop trying to fetch data from server which is taking to much time. By using Promise.race() method
+*/
+
+/*
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(res => {
+    if (!res.ok) {
+      throw new Error(`${errorMsg} ${res.status}`);
+    }
+    return res.json();
+  });
+};
+
+const timeout = function (s) {
+  return new Promise((_, reject) => {
+    setTimeout(() => {
+      reject(new Error('Request took to long time'));
+    }, s * 1000);
+  });
+};
+
+(async function () {
+  try {
+    const data = await Promise.race([
+      getJSON(`https://restcountries.com/v2/name/italy`),
+      timeout(0.6),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+
+// Promise.race([getJSON(`https://restcountries.com/v2/name/italy`), timeout(0.6)])
+//   .then(res => console.log(res))
+//   .catch(err => console.error(err));
+*/
+
+/****************************************** 
+COMMENT: Promise.all()   
+******************************************/
+/*
+(async function () {
+  try {
+    const data = await Promise.all([
+      Promise.resolve('Success'),
+      Promise.reject('Error in action 2'),
+      Promise.resolve('Another Success'),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(
+      new Error(`All promises are not successfully resolved:-  ${err}`)
+    );
+  }
+})();
+*/
+
+/****************************************** 
+COMMENT: Promise.allSettled()   
+******************************************/
+/*
+(async function () {
+  try {
+    const data = await Promise.allSettled([
+      Promise.resolve('Success'),
+      Promise.reject('Error'),
+      Promise.resolve('Another Success'),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+*/
+
+/****************************************** 
+COMMENT: Promise.any()   
+******************************************/
+/*
+(async function () {
+  try {
+    const data = await Promise.any([
+      Promise.resolve('Success'),
+      Promise.reject('Error'),
+      Promise.resolve('Another Success'),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+})();
 */

@@ -4,11 +4,16 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "Abrar",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.25.1",
     "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0"
   }
 }

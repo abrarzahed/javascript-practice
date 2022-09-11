@@ -54,10 +54,13 @@ ShoppingCard2.addToCart('Alu', 20);
 console.log(ShoppingCard2.shippingCost);
 console.log(ShoppingCard2);
 */
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import add, { cart } from './shoppingCard.js';
+
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
-  cart: [
+  stateCart: [
     { product: 'bread', quantity: 10 },
     { product: 'pizza', quantity: 6 },
   ],
@@ -75,3 +78,28 @@ const deepCloneState = cloneDeep(state);
 state.user.loggedIn = false;
 console.log(state);
 console.log(deepCloneState);
+
+add('pizza', 2);
+add('sandwich', 20);
+add('sandwich', 20);
+add('sandwich', 20);
+console.log(cart);
+
+/* 
+  COMMENT: parcel Hot module replacement
+*/
+if (module.hot) {
+  module.hot.accept();
+}
+
+class Person {
+  greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting} ${this.name}`);
+  }
+}
+
+const abrar = new Person('Abrar');
+
+import 'core-js/stable';

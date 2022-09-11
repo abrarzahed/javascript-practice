@@ -20,7 +20,7 @@ export { totalPrice, totalQuantity };
 
 //=== Default export  ===//
 const shippingCost = 10;
-const cart = [];
+export const cart = [];
 
 const totalPrice = 237;
 const totalQuantity = 23;
